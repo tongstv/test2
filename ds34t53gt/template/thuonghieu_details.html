@@ -1,0 +1,21 @@
+<div class="w99"> <div class="titleCSS"><a href="9999/thuonghieu">Danh sách thương hiệu</a> &raquo; {tmp.th_ten}</div> <form name="frm_thuonghieu_details" method="post" action="9999/process&module_id=thuonghieu_details&id={tmp.id}" enctype="multipart/form-data" target="target_eb_iframe"> <div class="d-none"> <input type="text" name="t_logo" value="{tmp.th_logo}" /> <input type="text" name="t_banner" value="{tmp.th_banner}" /> <input type="text" name="t_banner2" value="{tmp.th_banner2}" /> </div> <table cellpadding="0" cellspacing="0" width="100%" border="0" class="public-table"> <tr> <td class="t">Thương hiệu</td> <td class="i"><input type="text" name="t_ten" value="{tmp.th_ten}" class="l" /></td> </tr> <tr> <td class="t">Từ khóa</td> <td class="i"><input type="text" name="t_seo" value="{tmp.th_seo}" class="l" /></td> </tr> <tr> <td class="t">Phần trăm giảm giá</td> <td class="i"><input type="text" name="t_phantram" value="{tmp.th_phantram}" class="s" maxlength="2" /></td> </tr> <tr> <td class="t">Số thứ tự</td> <td class="i"><input type="text" name="t_stt" value="{tmp.th_stt}" class="s" maxlength="3" /></td> </tr> <tr> <td class="t">Trạng thái</td> <td class="i">{tmp.th_trangthai}</td> </tr> <tr> <td colspan="2" class="i bold redcolor bborder">Hình, màu nền</td> </tr> <tr> <td class="t">Logo <span class="small d-block">100 x 50. Mỗi thương hiệu sẽ có một logo để nhận diện</span></td> <td class="i cf"><div id="show_logo" class="lf f50">&nbsp;</div> <div class="lf f50"> <input type="file" name="file3" id="file3" size="20" /> <div class="small">Hỗ trợ các định dạng: .GIF, .PNG. JPG, .JPEG, .SWF (Flash)</div></div></td> </tr> <tr> <td class="t">Banner nhỏ <span class="small d-block">640 x 180. Banner nhỏ ở trang danh sách</span></td> <td class="i cf"><div id="show_banner" class="lf f50">&nbsp;</div> <div class="lf f50"> <input type="file" name="file" id="file" size="20" /> <div class="small">Hỗ trợ các định dạng: .GIF, .PNG. JPG, .JPEG, .SWF (Flash)</div></div></td> </tr> <tr> <td class="t">Banner to <span class="small d-block">999 x Auto. Banner to xuất hiện khi xem chi tiết một thương hiệu</span></td> <td class="i cf"><div id="show_banner2" class="lf f50">&nbsp;</div> <div class="lf f50"> <input type="file" name="file2" id="file2" size="20" /> <div class="small">Hỗ trợ các định dạng: .GIF, .PNG. JPG, .JPEG, .SWF (Flash)</div></div></td> </tr> <tr> <td class="i bold redcolor bborder" colspan="2">Nội dung thẻ meta</td> </tr> <tr> <td class="t">TITLE</td> <td class="i"><input type="text" name="t_title" value="{tmp.th_title}" class="m" /></td> </tr> <tr> <td class="t">META TITLE</td> <td class="i"><input type="text" name="t_meta_title" value="{tmp.th_meta_title}" class="m" /></td> </tr> <tr> <td class="t">KEYWORDS</td> <td class="i"><input type="text" name="t_keywords" value="{tmp.th_keywords}" class="m" /></td> </tr> <tr> <td class="t">NEW KEYWORDS</td> <td class="i"><input type="text" name="t_news_keywords" value="{tmp.th_news_keywords}" class="m" /></td> </tr> <tr> <td class="t">DESCRIPTION</td> <td class="i"><input type="text" name="t_description" value="{tmp.th_description}" class="m" /></td> </tr> <tr> <td colspan="2"><textarea name="t_noidung" id="t_noidung" style="width: 100%; height: 268px">{tmp.th_noidung}</textarea></td> </tr> </table> <div style="position:fixed;bottom:50px;right:30px"> <input type="submit" value="Lưu thay đổi" class="blue-button" style="padding:10px 20px;font-size:11pt" /> </div> </form> </div> <br /> <script type="text/javascript">
+function show_th_bg___ (a, b, c) {
+var f = document.frm_thuonghieu_details,
+inner = function (img, jd) {
+if (img != '') img = '<img src="' +img+ '" width="200" />';
+else img = '<em>Chọn và upload ảnh theo hướng dẫn</em>';
+dog(jd).innerHTML = img;
+};
+if (typeof a == 'undefined') a = f.t_banner.value;
+if (typeof b == 'undefined') b = f.t_banner2.value;
+if (typeof c == 'undefined') c = f.t_logo.value;
+f.t_banner.value = a;
+f.t_banner2.value = b;
+f.t_logo.value = c;
+inner(a, 'show_banner');
+inner(b, 'show_banner2');
+inner(c, 'show_logo');
+}
+show_th_bg___();
+$w.a('t_noidung');
+</script> 

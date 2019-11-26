@@ -1,0 +1,30 @@
+<style type="text/css"> body { background:#F7F3F3; } </style> <br /> <div class="titleCSS bold"><a href="actions/thuonghieu">Thương hiệu nổi bật</a></div> <br /> <div class="cf"> <div class="lf" style="width:67%;"> <ul class="shop_onsale"> {tmp.th_list} </ul> <div>&nbsp;</div></div> <div class="lf" style="width:33%;"> <div class="th-right-border"> <ul class="th-tab cf"> <li data-show="th-cam-ket">Cam kết</li> <li data-show="th-doi-tac" style="display:none;">Đối tác</li> </ul> <div class="th-right-padding"> <div class="th-cam-ket hidden-tab"> <ul> <li class="chinh-hang"> <div class="cam-ket-title">100% chính hàng</div> <div>{tmp.web_name} cam kết <span class="bold">100% sản phẩm chính hãng – 100% hài lòng</span>.</div> </li> <li class="tra-hang"> <div class="cam-ket-title">Đổi trả hàng</div> <div>Trả lại hàng trong 30 ngày</div> </li> <li class="giao-hang"> <div class="cam-ket-title">Thanh toán</div> <div>Thanh toán khi giao hàng</div> </li> <li class="mien-phi"> <div class="cam-ket-title">Vận chuyển</div> <div>Giao hàng Toàn Quốc. Miễn phí vận chuyển nội thành Hà Nội</div> </li> </ul> </div> <div class="th-doi-tac hidden-tab"> <ul> <li> <div class="cam-ket-title">100% chính hàng</div> <div>{tmp.web_name} cam kết <span class="bold">100% sản phẩm chính hãng – 100% hài lòng</span>.</div> </li> <li> <div class="cam-ket-title">Đổi trả hàng</div> <div>Trả lại hàng trong 30 ngày</div> </li> <li> <div class="cam-ket-title">Thanh toán</div> <div>Thanh toán khi giao hàng</div> </li> <li> <div class="cam-ket-title">Vận chuyển</div> <div>Giao hàng Toàn Quốc. Miễn phí vận chuyển nội thành Hà Nội</div> </li> </ul> <div align="center"><img src="http://s2.vipstatic.com/img/te/resource/brand_img.jpg" /></div></div> </div></div> <div class="th-right-border"> <div class="th-right-padding"> <div align="center" class="titleCSS bold">Thương hiệu</div> <ul class="th-logo cf"> {tmp.logo_list} </ul> </div></div> </div></div> <br /> <script type="text/javascript">
+(function () {
+$('.hidden-tab').hide();
+$('.hidden-tab:first').show();
+$('.th-tab li:first').addClass('selected');
+$('.th-tab li').click(function () {
+var a = $(this).attr('data-show') || '';
+if (a != '') {
+$('.th-tab li').removeClass('selected');
+$(this).addClass('selected');
+$('.hidden-tab').hide();
+$('.' +a).show();
+}
+});
+})();
+/*
+(function ( htm ) {
+for (var i = 0, str = ''; i < 20; i++) {
+str += htm;
+}
+$('.shop_onsale').html( str );
+})( $('.shop_onsale').html() );
+(function ( htm ) {
+for (var i = 0, str = ''; i < 30; i++) {
+str += htm;
+}
+$('.th-logo').html( str );
+})( $('.th-logo').html() );
+*/
+</script> 

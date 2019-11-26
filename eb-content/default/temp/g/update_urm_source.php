@@ -1,0 +1,1 @@
+<?php if(isset($_GET['uri'])&&$_GET['uri']!=''){$_GET['uri']=urldecode($_GET['uri']);$_SESSION['ss_ads_referre']=$_GET['uri'];}exit();

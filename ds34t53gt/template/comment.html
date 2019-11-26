@@ -1,0 +1,11 @@
+<style type="text/css"> .tableList tr:hover { background:#f8f8f8; } .a-da-xem a:visited { color:#C0F; } </style> <div class="w99"> <div class="titleCSS"><a href="9999/comment">Comment</a></div> <br /> <table border="0" cellpadding="6" cellspacing="0" width="100%" class="table-list a-da-xem"> <tr class="table-list-title"> <td width="50%">Nội dung</td> <td width="10%">Bài viết</td> <td width="10%">Thành viên</td> <td width="10%">Admin</td> <td width="15%">Ngày</td> <td width="5%">&nbsp;</td> </tr> {tmp.main_content} </table> <br /> <div>{tmp.str_page}</div></div> <br /> <script type="text/javascript">
+$('.click-update-status-cmt').off('click-update-status-cmt').click(function () {
+var a = $(this).attr('data-status') || '',
+b = $(this).attr('data-ajax') || '';
+if (a == '-1' || a == -1) {
+alert('Bình luận từ FB sẽ quản trị tại trang của FB');
+} else {
+ajaxl( 'admin.php?act=comment_status' +b, 'rME', 1 );
+}
+});
+</script> 

@@ -1,0 +1,15 @@
+<div class="cf"> <div class="titleCSS lf f25"><a href="9999/thread">Sản phẩm</a>{tmp.thread_title} ({tmp.totalThread})</div> <div class="lf f25"> <form name="frm_search_product" method="post" action="9999/thread&ost=search"> <input title="Tìm theo tên sản phẩm" type="text" name="t_product_key" onfocus="if(this.value==this.title){this.value=''}" onblur="if(this.value==''){this.value=this.title}" value="{tmp.product_key}" style="background:#f8f8f8;width:168px;padding:4px 6px;border:1px #ccc solid;border-radius:3pt" /> <input type="submit" value="Tìm" style="display:none" /> </form> </div> <div align="right" class="lf f50 cf"> <div class="lf f38"><a onclick="ajaxl('admin.php?act=thread_view_img','rME',1)" href="javascript://" class="blue-button">{tmp.str_view_img}</a></div> <div class="lf f62"><a href="export_excel.php?act=thread_list_excel" class="blue-button" target="_blank">Export Excel</a> <a href="9999/thread_add" class="blue-button">Thêm S.Phẩm mới</a></div></div> </div> <div class="cf"> <div class="lf f75">&nbsp;</div> <div align="right" class="lf f25"><a onclick="ajaxl('admin.php?act=thread_sort','rME',1)" href="javascript://" class="w-button">Xem theo: {tmp.str_sort}</a></div></div> <br /> <table border="0" cellpadding="6" cellspacing="0" width="100%" class="table-list"> <tr class="table-list-title"> <td>Mã S.Phẩm</td> <td>Ảnh</td> <td>Tên S.Phẩm</td> <td>Phân nhóm</td> <td>Giá cũ</td> <td>Giá mới</td> <td>Thống kê</td> <td>Ngày hết hạn</td> <td>Ưu tiên</td> <td>Công cụ</td> </tr> {tmp.thread_list} </table> <br /> <div>{tmp.str_page}</div> <br /> <script type="text/javascript">
+var act_uri_thrad = 'admin.php?act=thread';
+$('.click-order-thread').off('click').click(function () {
+var a = $(this).attr('data-ajax') || '';
+ajaxl( act_uri_thrad+ '&act_thread=order' +a, 'rME', 9 );
+});
+$('.click-reset-thread').off('click').click(function () {
+var a = $(this).attr('data-ajax') || '';
+ajaxl( act_uri_thrad+ '&act_thread=reset' +a, 'rME', 9 );
+});
+$('.click-giahan-thread').off('click').click(function () {
+var a = $(this).attr('data-ajax') || '';
+ajaxl( act_uri_thrad+ '&act_thread=giahan' +a, 'rME', 9 );
+});
+</script> 

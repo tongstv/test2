@@ -1,0 +1,14 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns="http://www.w3.org/1999/xhtml"> <head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <title>Clear data...</title> <meta name="description" content="Day la chuc nang don dep website theo dinh ky, tinh nang bao gom don dep tin rao vat qua han, don dep log..." /> <script type="text/javascript">
+function importAlert(arr_alert) {
+if (arr_alert != '') {
+var _import = '';
+_import += '<div class="fix-popup">';
+_import += '<div align="center" style="background:#ccc;width:666px;margin:168px auto;padding:68px 0;border:1px #000 solid">';
+_import += '<h1>Vui lòng chờ...</h1>';
+_import += '<h2>' +arr_alert+ '</h2>';
+_import += '</div>';
+_import += '</div>';
+parent.dog('o_popup').innerHTML = _import;
+}
+}
+</script> </head> <body> <div>{tmp.menu_select}</div> <div>{tmp.main_content}</div> <script type="text/javascript">parent.dog('o_popup').innerHTML = '';</script> </body> </html> 

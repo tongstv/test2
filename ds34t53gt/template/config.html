@@ -1,0 +1,421 @@
+<style type="text/css"> .show-if-itvn9online td:last-child {
+    border-right: 1px #f00 solid;
+} </style>
+<div class="w99">
+    <div><a href="9999/config" class="titleCSS bold">Cấu hình Website</a></div>
+    <form name="frm_config" method="post" action="9999/process&module_id=config" target="target_eb_iframe"
+          enctype="multipart/form-data" onsubmit="check_update_config()">
+        <div class="d-none"><textarea name="cf_js_allpage" id="cf_js_allpage" style="width:90%;height:200px;">{tmp.cf_js_allpage}</textarea>
+            <textarea name="cf_js_hoan_tat" id="cf_js_hoan_tat"
+                      style="width:90%;height:200px;">{tmp.cf_js_hoan_tat}</textarea> <input type="text" name="cf_logo"
+                                                                                             value="{tmp.cf_logo}"/>
+        </div>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="public-table">
+            <tr>
+                <td class="i bold redcolor bborder" colspan="2">Meta trang chủ</td>
+            </tr>
+            <tr>
+                <td class="t">TITLE</td>
+                <td class="i"><input type="text" name="t_title" value="{tmp.cf_title}" class="m"/></td>
+            </tr>
+            <tr>
+                <td class="t">META TITLE</td>
+                <td class="i"><input type="text" name="t_meta_title" value="{tmp.cf_meta_title}" class="m"/></td>
+            </tr>
+            <tr>
+                <td class="t">KEYWORDS</td>
+                <td class="i"><input type="text" name="t_keywords" value="{tmp.cf_keywords}" class="m"/></td>
+            </tr>
+            <tr>
+                <td class="t">NEW KEYWORDS</td>
+                <td class="i"><input type="text" name="t_news_keywords" value="{tmp.cf_news_keywords}" class="m"/></td>
+            </tr>
+            <tr>
+                <td class="t">DESCRIPTION</td>
+                <td class="i"><input type="text" name="t_description" value="{tmp.cf_description}" class="m"
+                                     maxlength="170"/></td>
+            </tr>
+            <tr>
+                <td class="t">ABSTRACT</td>
+                <td class="i"><input type="text" name="t_abstract" value="{tmp.cf_abstract}" class="m" maxlength="170"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="i bold redcolor bborder" colspan="2">Nâng cao</td>
+            </tr>
+
+
+
+            <tr>
+                <td class="t">Mầu chủ đạo</td>
+                <td class="i">
+                    <input type="color" name="cf_color" value="{tmp.cf_color}" style="background: {tmp.cf_color}">
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="t">Mầu nav menu</td>
+                <td class="i">
+                    <input type="color" name="cf_nav" value="{tmp.cf_nav}" style="background: {tmp.cf_nav}">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="t">Logo website <span class="small d-block">Upload file từ máy tính lên</span></td>
+                <td class="i">
+                    <div class="cf">
+                        <div class="lf f50"><input type="file" name="file" id="file" size="20"/>
+                            <div class="small"><em>Hỗ trợ các định dạng: .GIF, .PNG. JPG, .JPEG</em></div>
+                        </div>
+                        <div align="right" id="preview_cf_logo" class="lf f50"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="t">Favicon <span class="small d-block">Nhập URL cho favicon</span></td>
+                <td class="i"><input type="text" name="cf_favicon" value="{tmp.cf_favicon}" class="m" maxlength="155"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="t">ID G.Analytics <span class="d-block small"><a href="http://www.google.com.vn/analytics/"
+                                                                            target="_blank" rel="nofollow">ID theo dõi thuộc tính trên Google Analytics</a></span>
+                </td>
+                <td class="i"><input type="text" name="cf_ga_id" value="{tmp.cf_ga_id}" class="n" maxlength="25"/></td>
+            </tr>
+            <tr>
+                <td class="t">ID GSE <span class="d-block small"><a href="https://www.google.com/cse/all?hl=vi"
+                                                                    target="_blank" rel="nofollow">ID công cụ tìm kiếm tùy chỉnh</a></span>
+                </td>
+                <td class="i"><input type="text" name="t_gse" value="{tmp.cf_gse}" class="m" maxlength="100"/></td>
+            </tr>
+            <tr>
+                <td class="t">Hệ thống gửi email</td>
+                <td class="i">
+                    <div><input type="radio" name="cf_sys_email" id="oi_sys_email_0" value="0" checked="checked"
+                                class="click-change-sys-email"/> <label for="oi_sys_email_0">Sử dụng hàm mail() mặc định
+                        của server. ( <em>khuyên dùng</em> )</label></div>
+                    <div><input type="radio" name="cf_sys_email" id="oi_sys_email_1" value="1"
+                                class="click-change-sys-email"/> <label for="oi_sys_email_1">Sử dụng tài khoản
+                        SMTP.</label></div>
+                </td>
+            </tr>
+            <tr class="d-none show-if-using-phpmail">
+                <td class="i bold redcolor bborder" colspan="2">SMTP Email</td>
+            </tr>
+            <tr class="d-none show-if-using-phpmail">
+                <td class="t">SMTP Email <span class="d-block small">Email hoặc tài khoản đăng nhập</span></td>
+                <td class="i"><input type="text" name="cf_smtp_email" value="{tmp.cf_smtp_email}" class="m"
+                                     maxlength="68"/></td>
+            </tr>
+            <tr class="d-none show-if-using-phpmail">
+                <td class="t">SMTP Pass <span class="d-block small">Mật khẩu đăng nhập</span></td>
+                <td class="i"><input type="text" name="cf_smtp_pass" value="{tmp.cf_smtp_pass}" class="m"
+                                     maxlength="25"/></td>
+            </tr>
+            <tr class="d-none show-if-using-phpmail">
+                <td class="t">SMTP Host <span class="d-block small">IP hoặc host name của server mail</span></td>
+                <td class="i"><input type="text" name="cf_smtp_host" value="{tmp.cf_smtp_host}" class="n"
+                                     maxlength="25"/></td>
+            </tr>
+            <tr class="d-none show-if-using-phpmail">
+                <td class="t">SMTP Port <span class="d-block small">Port nếu có</span></td>
+                <td class="i"><input type="text" name="cf_smtp_port" value="{tmp.cf_smtp_port}" class="s"
+                                     maxlength="4"/></td>
+            </tr>
+            <tr class="d-none show-if-using-phpmail">
+                <td class="t">Test email <span
+                        class="d-block small">Email sẽ được gửi về <strong>{tmp.cf_email}</strong></span></td>
+                <td class="i"><a href="javascript://" onclick="config_test_send_mail()"><strong>Gửi thử trước khi update
+                    thông tin cho SMTP</strong></a> <span id="test_smtp_email" class="d-none small"
+                                                          style="margin-left:30px"></span></td>
+            </tr>
+            <tr class="d-none">
+                <td class="i bold redcolor bborder" colspan="2">Bảo mật</td>
+            </tr>
+            <tr class="d-none">
+                <td class="t" valign="top">IP admin <span class="small d-block">Danh sách những địa chỉ IP được phép truy cập vào phần quản lý của Website. Nhập nhiều địa chỉ IP, mỗi IP cách nhau bởi dấu xuống dòng.</span>
+                </td>
+                <td class="i"><textarea name="cf_white_ip" id="cf_white_ip" style="width:368px;height:68px">{tmp.cf_white_ip}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="i bold redcolor bborder" colspan="2">Thông tin liên hệ</td>
+            </tr>
+            <tr>
+                <td class="t">Tên công ty</td>
+                <td class="i"><input type="text" name="cf_ten_cty" value="{tmp.cf_ten_cty}" class="m"/></td>
+            </tr>
+            <tr>
+                <td class="t">Tên Website</td>
+                <td class="i"><input type="text" name="web_name" value="{tmp.web_name}" class="m"/></td>
+            </tr>
+            <tr>
+                <td class="t">Email liên hệ</td>
+                <td class="i"><input type="text" name="cf_email" value="{tmp.cf_email}" class="l"/></td>
+            </tr>
+            <tr class="d-none show-if-itvn9online">
+                <td class="t">Email nhận thông báo <span class="d-block small">* Nếu trường này không để trống, mỗi khi có đơn hàng sẽ đồng thời gửi email thông báo tới email này.</span>
+                </td>
+                <td class="i"><input type="text" name="cf_email_note" value="{tmp.cf_email_note}" class="l"/></td>
+            </tr>
+            <tr class="d-none">
+                <td class="t">Email Bảo Kim</td>
+                <td class="i"><input type="text" name="cf_email_bk" value="{tmp.cf_email_bk}" class="l"/></td>
+            </tr>
+            <tr class="d-none">
+                <td class="t">Khuyến mại qua BK</td>
+                <td class="i"><strong>{tmp._gl_percent_bk}</strong>%</td>
+            </tr>
+            <tr>
+                <td class="t" valign="top">Điện thoại <span class="small d-block">Có thể nhập nhiều số điện thoại, mỗi số cách nhau bởi một dấu xuống dòng.</span>
+                </td>
+                <td class="i"><textarea name="cf_dienthoai" id="cf_dienthoai" style="width:368px;height:68px">{tmp.cf_dienthoai}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="t" valign="top">Hotline</td>
+                <td class="i"><input type="text" name="cf_hotline" id="cf_hotline" value="{tmp.cf_hotline}" class="l"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="t" valign="top">Địa chỉ <span class="small d-block">Có thể nhập nhiều địa chỉ, mỗi địa chỉ cách nhau bởi một dấu xuống dòng. Địa chỉ đầu tiên sẽ là địa chỉ chính cho mọi trường hợp.</span>
+                </td>
+                <td class="i"><textarea name="cf_diachi" id="cf_diachi"
+                                        style="width:368px;height:68px">{tmp.cf_diachi}</textarea></td>
+            </tr>
+            <tr>
+                <td class="t" valign="top">Thông tin chuyển khoản <span class="small d-block">Thông tin này sẽ hiển thị trong phần hướng dẫn thanh toán.</span>
+                </td>
+                <td class="i"><textarea name="cf_bank" id="cf_bank"
+                                        style="width:368px;height:68px">{tmp.cf_bank}</textarea></td>
+            </tr>
+            <tr>
+                <td class="i bold redcolor bborder" colspan="2">Mạng xã hội</td>
+            </tr>
+            <tr>
+                <td class="t" valign="top">Yahoo <span class="small d-block">Nhập nhiều địa chỉ Yahoo, mỗi địa chỉ cách nhau bởi dấu xuống dòng</span>
+                </td>
+                <td class="i"><textarea name="cf_yahoo" id="cf_yahoo"
+                                        style="width:368px;height:68px">{tmp.cf_yahoo}</textarea></td>
+            </tr>
+            <tr>
+                <td class="t" valign="top">Skype <span class="small d-block">Nhập nhiều địa chỉ Skype, mỗi địa chỉ cách nhau bởi dấu xuống dòng</span>
+                </td>
+                <td class="i"><textarea name="cf_skype" id="cf_skype"
+                                        style="width:368px;height:68px">{tmp.cf_skype}</textarea></td>
+            </tr>
+            <tr>
+                <td class="t">Facebook page</td>
+                <td class="i"><input type="text" name="cf_facebook_page" value="{tmp.cf_facebook_page}"
+                                     placeholder="Nhập vào liên kết dẫn tới trang Facebook" class="m"/></td>
+            </tr>
+            <tr>
+                <td class="t">Facebook App ID</td>
+                <td class="i"><input type="text" name="cf_facebook_id" value="{tmp.cf_facebook_id}"
+                                     placeholder="ID ứng dụng Facebook" class="l"/></td>
+            </tr>
+            <tr>
+                <td class="t">Admin Facebook ID <span
+                        class="small d-block">Nhiều ID, mỗi ID cách nhau bởi dấu phẩy ( <font
+                        class="redcolor bold">,</font> )</span></td>
+                <td class="i"><input type="text" name="cf_facebook_admin_id" value="{tmp.cf_facebook_admin_id}"
+                                     placeholder="ID tài khoản Facebook quản lý chính" class="m"/></td>
+            </tr>
+            <tr>
+                <td class="t">&nbsp;</td>
+                <td class="i">
+                    <div><a href="https://developers.facebook.com/apps/" target="_blank" rel="nofollow">https://developers.facebook.com/apps/</a>
+                    </div>
+                    <div><a href="https://developers.facebook.com/tools/comments" target="_blank" rel="nofollow">https://developers.facebook.com/tools/comments</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="t">Google+ page</td>
+                <td class="i"><input type="text" name="cf_google_plus" value="{tmp.cf_google_plus}"
+                                     placeholder="Nhập vào liên kết dẫn tới trang G+" class="m"/></td>
+            </tr>
+            <tr>
+                <td class="t">Youtube chanel</td>
+                <td class="i"><input type="text" name="cf_youtube_chanel" value="{tmp.cf_youtube_chanel}"
+                                     placeholder="Nhập vào liên kết dẫn tới trang &quot;Kênh của tôi&quot; trên Youtube"
+                                     class="m"/></td>
+            </tr>
+            <tr>
+                <td class="t">Twitter page</td>
+                <td class="i"><input type="text" name="cf_twitter_page" value="{tmp.cf_twitter_page}"
+                                     placeholder="Nhập vào liên kết dẫn tới trang Twitter" class="m"/></td>
+            </tr>
+            <tr>
+                <td class="i bold redcolor bborder" colspan="2">Mã nhúng (HTML: Javascript/ iframe/ css...)</td>
+            </tr>
+            <tr>
+                <td valign="top" class="t">Tất cả các trang</td>
+                <td class="i"><textarea name="cf_js_allpage_full" id="cf_js_allpage_full"
+                                        placeholder="Mã nhúng HTML ở tất cả các trang, trước &lt;/BODY&gt;"
+                                        style="width:90%;height:400px;">{tmp.cf_js_allpage_full}</textarea></td>
+            </tr>
+            <tr>
+                <td valign="top" class="t">Trang hoàn tất đơn hàng</td>
+                <td class="i"><textarea name="cf_js_hoan_tat_full" id="cf_js_hoan_tat_full"
+                                        placeholder="Mã nhúng HTML ở Trang hoàn tất đơn hàng"
+                                        style="width:90%;height:400px;">{tmp.cf_js_hoan_tat_full}</textarea></td>
+            </tr>
+            <tr>
+                <td class="i bold redcolor bborder" colspan="2">Quản lý - Hiển thị</td>
+            </tr>
+            <tr>
+                <td class="t" valign="top">Adminstrator <span
+                        class="small d-block">Danh sách Tài khoản có quyền Admin</span></td>
+                <td class="i">{tmp._gl_admin}</td>
+            </tr>
+            <tr>
+                <td class="t" valign="top">Email báo lỗi <span class="small d-block">Tài khoản này là cố định, một số trường hợp quan trọng sẽ cần bắt lỗi, lỗi sẽ tự động gửi về email này.</span>
+                </td>
+                <td class="i">{tmp.admin_email}</td>
+            </tr>
+            <tr class="d-none">
+                <td class="t">Hiển thị</td>
+                <td class="i"><b>{tmp.threadInPage}</b> tin/ trang</td>
+            </tr>
+            <tr>
+                <td class="i bold redcolor bborder" colspan="2">Upload</td>
+            </tr>
+            <tr>
+                <td class="t">Thư mục Upload</td>
+                <td class="i"><strong>{tmp._gl_upload}</strong></td>
+            </tr>
+            <tr class="d-none">
+                <td class="t">Dung lượng Upload</td>
+                <td class="i"><strong>{tmp._gl_max_size_img}</strong> byte/ ảnh</td>
+            </tr>
+            <tr class="d-none">
+                <td class="t">Số ảnh tối đa</td>
+                <td class="i"><strong>{tmp._gl_max_img}</strong> ảnh cho mỗi tài khoản</td>
+            </tr>
+            <tr class="d-none">
+                <td class="t" valign="top">Kích thước Upload</td>
+                <td class="i">
+                    <div>Dài: <b>{tmp._gl_min_width}</b> x <b>{tmp._gl_max_width}</b> pixels</div>
+                    <p>Rộng: <b>{tmp._gl_min_height}</b> x <b>{tmp._gl_max_height}</b> pixels</p></td>
+            </tr>
+            <tr class="d-none">
+                <td class="t">Vá lỗi cấu hình</td>
+                <td class="i"><input type="checkbox" name="t_truncate" id="t_truncate" value="1" checked="checked"/>
+                    <label for="t_truncate">Nếu quá trình cập nhật có lỗi, bỏ lựa chọn này rồi mới cập nhật</label></td>
+            </tr>
+        </table>
+        <div style="position:fixed;bottom:50px;right:30px"><input type="submit" value="Cập nhật" class="blue-button"/>
+        </div>
+    </form>
+</div> <br/>
+<script type="text/javascript">
+    {
+        tmp.js
+    }
+
+    function xu_ly_du_lieu_js(fun) {
+        fun = fun.replace(/<!--\s-->/g, "");
+        fun = fun.replace(/<!--\s\s-->/g, "");
+        fun = fun.replace(/<!--\s\s\s-->/g, "");
+        var arr = fun.split("\n"),
+            str = '',
+            re = /^\w+$/,
+            ky_tu_cuoi_cung = '';
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = g_func.trim(arr[i]);
+            if (arr[i] != '' && arr[i].substr(0, 2) != '//') {
+                if (arr[i].substr(0, 4) == '<!--') {
+                    if (arr[i].substr(arr[i].length - 3) == '-->') {
+                        arr[i] = '';
+                    }
+                }
+                if (arr[i] != '') {
+                    str += arr[i];
+                    str += "\n";
+                }
+                /*
+                ky_tu_cuoi_cung = arr[i].substr( arr[i].length - 1 );
+                if ( ky_tu_cuoi_cung == ';' ) {
+                console.log( ky_tu_cuoi_cung );
+                } else {
+                console.log( ky_tu_cuoi_cung+ ' ------------------> OK' );
+                str += "\n";
+                }
+                */
+            }
+        }
+        return str;
+    }
+
+    function check_update_config() {
+        var f = document.frm_config,
+            fun = f.cf_js_allpage_full.value,
+            js_hoantat = f.cf_js_hoan_tat_full.value;
+        var str = xu_ly_du_lieu_js(fun),
+            str_hoantat = xu_ly_du_lieu_js(js_hoantat);
+        f.cf_js_allpage.value = str;
+        f.cf_js_hoan_tat.value = str_hoantat;
+        console.log(str);
+        console.log(str_hoantat);
+    }
+
+    function config_test_send_mail() {
+        var f = document.frm_config,
+            from = f.cf_smtp_email.value,
+            pass = f.cf_smtp_pass.value,
+            host = f.cf_smtp_host.value,
+            to = f.cf_email.value;
+        if (from != '' && pass != '' && host != '' && to != '') {
+            dog('test_smtp_email', 'Đang tải...');
+            $('#test_smtp_email').show();
+            ajaxl('guest.php?act=test_smtp_email&t_email=' + to, 'test_smtp_email', 1);
+        } else {
+            alert('Nhập đầy đủ Email, Host, Pass để thử');
+            f.cf_smtp_email.focus();
+        }
+    }
+
+    /*
+    * SMTP
+    */
+    function kich_hoat_smtp_email(bat_smtp) {
+        if (typeof bat_smtp == 'undefined') {
+            bat_smtp = 0;
+        }
+        if (bat_smtp == 1) {
+            $('.show-if-using-phpmail').show().removeClass('d-none');
+        } else {
+            $('.show-if-using-phpmail').hide();
+        }
+    }
+
+    $('.click-change-sys-email').each(function () {
+        var a = $(this).val() || 0;
+        if (a == cf_sys_email) {
+            $(this).attr({
+                checked: 'checked'
+            });
+        } else {
+            $(this).removeAttr('checked');
+        }
+    });
+    kich_hoat_smtp_email(cf_sys_email);
+    $('.click-change-sys-email').click(function () {
+        var a = $(this).val() || 0;
+        kich_hoat_smtp_email(a);
+    });
+
+    function func_preview_cf_logo() {
+        var logo = document.frm_config.cf_logo.value;
+        if (logo != '') {
+            dog('preview_cf_logo', '<img src="' + logo + '" />');
+        }
+    }
+
+    func_preview_cf_logo();
+    if (isLogin == 1) {
+        $('.show-if-itvn9online').show().removeClass('d-none');
+    }
+</script> 

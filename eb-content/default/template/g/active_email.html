@@ -1,0 +1,23 @@
+<br /> <div style="background:#fff;padding:20px;font-size:11pt;line-height:22px"> <div id="show_activate_status" class="d-none">Chúc mừng,<br /> Kích hoạt email thành công. Bạn nhận được {tmp.event_discount}đ vào tài khoản hoặc mã giảm giá (tương đương {tmp.event_discount}đ khi mua hàng tại {tmp.web_name}).<br /> Số tiền này sẽ được chiết khấu khi bạn mua đơn hàng có giá trị từ <strong>1.000.000đ</strong> trở nên<br /> Chúc bạn mua sắm vui vẻ<br /> Thân ái,</div> <div>{tmp.activate_status}</div> <div><a id="aGoToHome" href="javascript://">Về trang chủ</a> (<strong id="demNguocHome"></strong>)</div></div> <script type="text/javascript">
+{tmp.js}
+var demGHome = 6;
+function go_to_home () {
+if (demGHome == 0) {
+dog('aGoToHome').href = web_link;
+window.location = web_link;
+return;
+}
+dog('demNguocHome').innerHTML = demGHome;
+demGHome--;
+setTimeout(function () {
+go_to_home();
+}, 1000);
+}
+(function () {
+if (active_status == 1) {
+$('#show_activate_status').show();
+return;
+}
+go_to_home();
+})();
+</script> 

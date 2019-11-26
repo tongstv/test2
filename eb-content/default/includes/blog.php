@@ -1,0 +1,1 @@
+<?php $sql=$func->q("SELECT bl_id FROM tbl_blog WHERE bl_trangthai > 0 ORDER BY bl_ngaygui DESC LIMIT 0, 1");$row=mysql_fetch_assoc($sql);$id=(int)$row['bl_id'];include('includes/blog_details.php');

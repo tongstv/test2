@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns="http://www.w3.org/1999/xhtml"> <head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <title>Phiếu thu</title> <link rel="shortcut icon" href="favicon.ico?v=2"/> <link rel="stylesheet" href="css/default.css?v={tmp.web_version}" type="text/css"> <style type="text/css"> a { color:#000 !important } ul { padding:0; margin:0; list-style:none } .f20 { width:20% } .f30 { width:30% } .f70 { width:70% } .f80 { width:80% } .public-table-print { border-top:1px #000 solid; border-right:1px #000 solid; } .public-table-print td { padding:5px 1px 5px 6px; border-bottom:1px #000 solid; border-left:1px #000 solid; } .public-table-print .tr-title { font-weight:bold } .public-table-print .tong-gia1 { text-align:right; width:70% } .public-table-print .tong-gia2 { width:30% } .tem-bao-hanh { padding:3px 0 3px 4px !important } .aaaaa { font-size:11px; border-top:1px #000 solid; border-right:1px #000 solid } .aaaaa td { padding:0 1px; width:10px; border-bottom:1px #000 solid; border-left:1px #000 solid } </style> <script type="text/javascript">
+function formatCurrency (num) {
+num = num.toString().replace(/\$|\,/g, '');
+if (isNaN(num)) {
+num = "0";
+}
+sign = (num == (num = Math.abs(num)));
+num = Math.floor(num * 100 + 0.50000000001);
+num = Math.floor(num / 100).toString();
+for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++) {
+num = num.substring(0, num.length - (4 * i + 3)) + '.' + num.substring(num.length - (4 * i + 3));
+}
+return (((sign) ? '' : '-') + num);
+}
+function number_number (num) {
+num = num.split('');
+var re = /^\d+$/;
+var new_num = '';
+for (i = 0; i < num.length; i++) {
+if (re.test(num[i]) == true) {
+new_num += num[i];
+}
+}
+return parseInt(new_num, 10);
+}
+function func_tong_tien () {
+var valPhiVanChuyen = document.getElementById('phi_van_chuyen').value;
+valPhiVanChuyen = number_number(valPhiVanChuyen);
+if (valPhiVanChuyen%1000 == 0) {
+document.getElementById('phi_van_chuyen').value = formatCurrency(valPhiVanChuyen)+ 'đ';
+var tongTien1 = document.getElementById('tong_tien1').innerHTML;
+tongTien1 = number_number(tongTien1);
+tongTien1 += valPhiVanChuyen;
+document.getElementById('tinh_tong_tien').innerHTML = '<strong style="font-size:12pt">' +formatCurrency(tongTien1)+ '</strong>đ';
+}
+}
+</script> </head> <body style="background:#fff"> <div style="width:888px;margin:0 auto"> <div style="padding:0 20px"> <div class="clearfix" style="line-height:20px;padding:5px 0;border-bottom:1px #000 solid"> <div class="lf" style="width:32%"><img src="{tmp.cf_logo}" /></div> <div class="lf" style="width:68%"> <div style="font-size:12pt;text-transform:uppercase;font-weight:bold">{tmp.cf_ten_cty}</div> <ul> <li class="clearfix"> <div class="lf f20">Địa chỉ</div> <div class="lf f80">: {tmp.cf_diachi}</div> </li> <li class="clearfix"> <div class="lf f20">Điện thoại</div> <div class="lf f80">: {tmp.cf_dienthoai}</div> </li> <li class="clearfix"> <div class="lf f20">E-mail</div> <div class="lf f80">: {tmp.str_email}</div> </li> </ul> </div></div> <div align="center" style="text-transform:uppercase;font-weight:bold;padding:3px 0;font-size:18px">Phiếu giao nhận hàng</div> <div class="clearfix" style="border-bottom:1px #000 dotted;padding:0 0 10px 0"> <div align="center" class="lf" style="width:70%"> <div>Liên: <em>mẫu chung</em></div> <div>Ngày <em>{tmp.ngaygui}</em> tháng <em>{tmp.thanggui}</em> năm <em>{tmp.namgui}</em></div></div> <div class="lf" style="width:30%"> <div class="clearfix"> <div class="lf" style="width:40%"> <div>Mã hóa đơn</div> <div>Mẫu số</div></div> <div class="lf" style="width:60%"> <div>: <strong>{tmp.id}</strong></div> <div>: 0A5/XKNB3/001</div></div> </div></div> </div> <div class="clearfix" style="line-height:20px;padding:3px 0;"> <ul> <li class="clearfix"> <div class="lf f20">Tên liên hệ</div> <div class="lf f80">: {tmp.hd_ten}</div> </li> <li class="clearfix"> <div class="lf f20">Địa chỉ</div> <div class="lf f80">: {tmp.hd_diachi}</div> </li> <li class="clearfix"> <div class="lf f20">Điện thoại</div> <div class="lf f80">: {tmp.hd_dienthoai}</div> </li> </ul> </div> <table cellpadding="0" cellspacing="0" width="100%" border="0" class="public-table-print"> <tr class="tr-title"> <td width="5%">STT</td> <td width="50%">Sản phẩm</td> <td width="8%" style="font-size:10px;text-align:center;padding:2px 0">Bảo hành<span style="font-weight:normal;display:block">(tháng)</span></td> <td width="10%">Giá bán</td> <td width="10%">Số lượng</td> <td width="12%">Tổng</td> </tr> {tmp.product_invoi_list} {tmp.str_hd_khuyenmai} <tr> <td colspan="4" class="tong-gia1" style="padding-right:20px">Thành tiền</td> <td colspan="2" class="tong-gia2" style="font-size:12pt"><strong id="tong_tien1">{tmp.tongtien}</strong>đ</td> </tr> <tr contenteditable="true"> <td align="right" colspan="4" style="padding-right:20px">Phí vận chuyển</td> <td colspan="2" style="padding:5px 0 5px 6px"><input type="text" value="" id="phi_van_chuyen" onblur="func_tong_tien()" maxlength="10" style="border:0 none;background:#fff;width:99%" /></td> </tr> <tr contenteditable="true"> <td align="right" colspan="4" style="padding-right:20px">Tổng</td> <td id="tinh_tong_tien" colspan="2">&nbsp;</td> </tr> </table> <div style="padding:5px 0;"><strong>Phiếu giao nhận hàng được {tmp.cf_ten_cty} sử dụng làm chứng từ trong các trường hợp bảo hành.</strong></div> <div style="font-size:18px"><em>* Ghi chú:</em></div> <div contenteditable="true" style="height:20px">&nbsp;</div> <div class="clearfix" align="center" style="height:90px"> <div class="lf" style="width:20%"> <div><strong>Người nhận</strong></div> <div><em>(Ký, ghi rõ họ tên)</em></div></div> <div class="lf" style="width:20%"> <div><strong>Người giao</strong></div></div> <div class="lf" style="width:36%"> <div><strong>{tmp.cf_ten_cty}</strong></div> <div>Ngày <em>{tmp.dd}</em> tháng <em>{tmp.mm}</em> năm <em>{tmp.yy}</em></div> <div style="padding:58px 0 0 0"><strong>{tmp.tv_hoten}</strong></div></div> <div class="lf" style="width:24%"> <div style="padding:0 0 20px 0">Ngày <em style="margin:0 8px">&nbsp;</em> tháng <em style="margin:0 8px">&nbsp;</em> năm <em style="margin:0 8px">20</em></div> <div align="right"><img title="Code name" alt="Code name" src="code_name.php?act=code_name&code={tmp.id}&module_id=create_code_name&captcha={tmp.captcha}&display=default" /></div></div> </div> <br /> </div></div> </body> </html> 

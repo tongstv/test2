@@ -1,0 +1,1 @@
+<?php if($id>0){$_SESSION['sttp_id']=$id;setcookie('cttp_id',$id,time()+(3600*24*7));}else{unset($_SESSION['sttp_id']);setcookie('cttp_id',0,time()-1);} ?> <script type="text/javascript"> if (parent) { with (parent) { window.location = window.location.href; } } else { window.location = '<?=$web_link?>'; } </script> <?php exit(); 

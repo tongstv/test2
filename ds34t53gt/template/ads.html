@@ -1,0 +1,7 @@
+<style type="text/css"> .ads-admin { border-top:1px #ccc solid } .ads-admin .ads-admin-node { border-bottom:1px #ccc solid; padding:16px 6px; line-height:22px; } .ads-admin .ads-admin-node:hover { background-color:#f8f8f8 } </style> <div class="w99"> <div class="clearfix"> <div class="titleCSS lf f38"><a href="9999/ads" class="bold">Danh sách Quảng cáo</a></div> <div align="right" class="lf f62"><a href="9999/ads_add" class="blue-button">Thêm quảng cáo mới</a></div></div> <div class="ads-admin">{tmp.main_content}</div> <div>{tmp.str_page}</div></div> <br /> <script type="text/javascript">
+var act_uri_thrad = 'admin.php?act=ads';
+$('.click-reset-ads').off('click').click(function () {
+var a = $(this).attr('data-ajax') || '';
+ajaxl( act_uri_thrad+ '&act2=reset' +a, 'rME', 9 );
+});
+</script> 

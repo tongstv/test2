@@ -1,0 +1,1 @@
+<?php if($act==''){include('includes/home.php');}else if($pid>0){include('includes/details.php');}else{include('includes/list.php');}

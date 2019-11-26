@@ -1,0 +1,32 @@
+<div class="w99"> <div class="titleCSS"><a title="Danh sách nhóm tin" href="9999/thread_group">Danh sách nhóm tin</a> &raquo; {tmp.ant_ten}</div> <form name="frm_group_a_details" method="post" action="9999/process&module_id=thread_group_a_details&cid={tmp.cid}" enctype="multipart/form-data" target="target_eb_iframe"> <div class="d-none"> <input type="text" name="t_bg_img" value="{tmp.ant_bg_img}" class="m" /> <input type="text" name="t_bg_nav" value="{tmp.ant_bg_nav}" class="m" /> </div> <table cellpadding="0" cellspacing="0" width="100%" border="0" class="public-table"> <tr> <td class="t">Tên nhóm</td> <td class="i"><input type="text" name="t_ten" value="{tmp.ant_ten}" class="l" /></td> </tr> <tr> <td class="t">Từ khóa</td> <td class="i"><input type="text" name="t_seo" value="{tmp.ant_seo}" class="l" /></td> </tr> <tr> <td class="t">Số thứ tự</td> <td class="i"><input type="text" name="t_stt" value="{tmp.ant_stt}" class="s" maxlength="3" /></td> </tr> <tr> <td class="t">Trạng thái</td> <td class="i">{tmp.ant_trangthai}</td> </tr> <tr class="d-none"> <td colspan="2" class="i bold redcolor bborder">Hình, màu nền</td> </tr> <tr class="d-none"> <td class="t">Màu nền <span class="small d-block">Màu của nhóm sẽ được sử dụng cho các tab, màu nền đặc trưng...</span></td> <td class="i"><input type="text" name="t_color" value="{tmp.ant_color}" class="n" maxlength="6" /></td> </tr> <tr class="d-none"> <td class="t">CSS <span class="small d-block">Với mỗi nhóm, nếu có thiết kế style riêng thì nhúng URL của file CSS vào đây</span></td> <td class="i"><input type="text" name="t_bg" value="{tmp.ant_bg}" class="m" /></td> </tr> <tr class="d-none"> <td class="t">Hình nền (<em>NAV</em>) <span class="small d-block">Hình ảnh sẽ xuất hiện khi di chuột vào menu nav (Rộng, cao dựa theo số nhóm cấp 2)</span></td> <td class="i cf"><div id="show_bg_img" class="lf f50">&nbsp;</div> <div class="lf f50"> <input type="file" name="file" id="file" size="20" /> <div class="small">Hỗ trợ các định dạng: .GIF, .PNG. JPG, .JPEG, .SWF (Flash)</div></div></td> </tr> <tr> <td class="t">Banner phân nhóm <span class="small d-block">Mỗi nhóm sẽ có một banner khi người dung xem nội dung của nhóm</span></td> <td class="i cf"><div id="show_bg_nav" class="lf f50">&nbsp;</div> <div class="lf f50"> <input type="file" name="file2" id="file2" size="20" /> <div class="small">Hỗ trợ các định dạng: .GIF, .PNG. JPG, .JPEG, .SWF (Flash)</div></div></td> </tr> <tr> <td class="i bold redcolor bborder" colspan="2">Nội dung thẻ meta</td> </tr> <tr> <td class="t">TITLE</td> <td class="i"><input type="text" name="t_title" value="{tmp.ant_title}" class="m" /></td> </tr> <tr> <td class="t">META TITLE</td> <td class="i"><input type="text" name="t_meta_title" value="{tmp.ant_meta_title}" class="m" /></td> </tr> <tr> <td class="t">KEYWORDS</td> <td class="i"><input type="text" name="t_keywords" value="{tmp.ant_keywords}" class="m" /></td> </tr> <tr> <td class="t">NEW KEYWORDS</td> <td class="i"><input type="text" name="t_news_keywords" value="{tmp.ant_news_keywords}" class="m" /></td> </tr> <tr> <td class="t">DESCRIPTION</td> <td class="i"><input type="text" name="t_description" value="{tmp.ant_description}" class="m" /></td> </tr> <tr> <td class="t">&nbsp;</td> <td class="i"><input type="submit" name="b_submit" value="Cập nhật" class="blue-button" /></td> </tr> </table> </form> </div> <br /> <script type="text/javascript">
+function show_ant_bg___ (a, b) {
+var f = document.frm_group_a_details,
+inner = function (img, jd) {
+if (img != '') {
+img = '<img src="' +img+ '" width="200" class="cur" />';
+} else {
+img = '&nbsp;';
+}
+dog(jd, img);
+};
+if (typeof a == 'undefined') a = f.t_bg_img.value;
+if (typeof b == 'undefined') b = f.t_bg_nav.value;
+f.t_bg_img.value = a;
+f.t_bg_nav.value = b;
+inner(a, 'show_bg_img');
+inner(b, 'show_bg_nav');
+if (a != '') {
+$('#show_bg_img img').off('click').click(function () {
+f.t_bg_img.value = '';
+show_ant_bg___();
+});
+}
+if (b != '') {
+$('#show_bg_nav img').off('click').click(function () {
+f.t_bg_nav.value = '';
+show_ant_bg___();
+});
+}
+}
+show_ant_bg___();
+</script> 

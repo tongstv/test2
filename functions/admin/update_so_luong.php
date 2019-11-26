@@ -1,0 +1,1 @@
+<?php $cthd_id=(int)$_POST['chi_tiet_id'];$cthd_soluong=(int)$_POST['chi_tiet_sl'];if($cthd_id>0&&$cthd_soluong>=0){$func->q("UPDATE tbl_chitiethoadon SET cthd_soluong = ".$cthd_soluong." WHERE cthd_id = ".$cthd_id);}else{$m='Lỗi khi update dữ liệu';die('<script type="text/javascript">alert("'.$m.'")</script>');} 

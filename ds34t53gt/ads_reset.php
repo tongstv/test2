@@ -1,0 +1,1 @@
+<?php if($id>0){$func->q("UPDATE tbl_quangcao SET qc_ngaycapnhat = ".$date_time." WHERE qc_id = ".$id);}$id=0;include($dir_admin.'ads.php');

@@ -1,0 +1,13 @@
+<div class="clearfix"> <div id="show_show_show" class="titleCSS lf f38"><a href="9999/log_ads">Log Ads</a></div> <div align="right" class="lf f62 clearfix"> <div align="right" class="lf f62"> <input type="text" name="" id="" value="" /> </div> <div class="lf f38"> <div id="oi_quick_connect" class="rf"> <input type="button" id="oi_time_line_name" value="Thống kê truy cập" class="red-button" /> </div></div> </div></div> <br /> <div id="type_display1"> <table border="0" cellpadding="6" cellspacing="0" width="100%" class="table-list"> <tr class="table-list-title"> <td>URL nguồn</td> <td>URL đích</td> <td>OS</td> <td>Rộng x Cao</td> <td>Ngày giờ</td> <td>IP</td> </tr> {tmp.main_content} </table> <div>{tmp.str_page}</div></div> <div id="type_display2" style="display:none"> <table border="0" cellpadding="6" cellspacing="0" width="500" class="table-list"> <tr class="table-list-title"> <td>URL</td> <td>Lượt xem</td> <td><input type="checkbox" onclick="_global_js_eb._time_line.count_view_ads(this)" checked="checked" /></td> </tr> {tmp.main_content2} <tr class="table-list-title"> <td>&nbsp;</td> <td>&nbsp;</td> <td align="center" id="js_count_view">0</td> </tr> </table> </div> <br /> <script type="text/javascript">
+{tmp.js}
+_global_js_eb._time_line.show('9999/log_ads', type_display, function (return_arr) {
+if (type_display != '') {
+dog('type_display1').style.display = 'none';
+dog('type_display2').style.display = 'block';
+dog('show_show_show').innerHTML += ' &raquo; ' +return_arr[type_display]+ ' <span id="count_view_top"></span>';
+} else if (type_display2 != '') {
+dog('show_show_show').innerHTML += ' &raquo; ' +return_arr[type_display2];
+}
+});
+_global_js_eb._time_line.count_view_ads();
+</script> 

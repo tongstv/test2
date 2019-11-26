@@ -1,0 +1,1 @@
+<?php $dir_index='../';include $dir_index.'common.php';if($mtv_id>0){switch($act){case "avatar":case "picture_del":case "change_status":case "picasa_upload":require $dir_for_template.'temp/m/'.$act.'.php';break;default:die('<b>Exit...</b>');}}else{die('<div>Login false!</div>');}ob_end_flush(); 

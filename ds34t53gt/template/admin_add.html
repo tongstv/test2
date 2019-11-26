@@ -1,0 +1,36 @@
+<div class="w99"> <div class="titleCSS"><a href="9999/members&module=admin">Danh sách Admin</a> &raquo; Thêm tài khoản admin</div> <div id="main_admin_add" class="d-none"> <form name="frm_admin_add" method="post" action="9999/process&module_id=admin_add" target="target_eb_iframe" onsubmit="return check_admin_add();"> <table cellpadding="0" cellspacing="0" width="100%" border="0" class="public-table"> <tr> <td class="t"><label for="t_email">ID hoặc email thành viên</label></td> <td class="i"><input type="text" name="t_email" id="t_email" value="{tmp.email}" class="l" /></td> </tr> <tr> <td class="t">&nbsp;</td> <td class="i"><input type="checkbox" name="t_nhansu" id="ad_nhansu" value="1" /> <label for="ad_nhansu">Quản lý nhân sự</label></td> </tr> <tr> <td class="t">&nbsp;</td> <td class="i"><input type="checkbox" name="t_time_block" id="ad_time_block" value="1" /> <label for="ad_time_block">Truy cập ngoài giờ hành chính (18h-8h)</label></td> </tr> <tr> <td class="t">&nbsp;</td> <td class="i"><input type="checkbox" name="t_thanhvien" id="ad_thanhvien" value="1" /> <label for="ad_thanhvien">Quản lý thành viên</label></td> </tr> <tr> <td class="t">&nbsp;</td> <td class="i"><input type="checkbox" name="t_oder" id="ad_oder" value="1" /> <label for="ad_oder">Quản lý hóa đơn</label></td> </tr> <tr> <td class="t">&nbsp;</td> <td class="i"><input type="checkbox" name="t_oder_change" id="ad_oder_change" value="1" /> <label for="ad_oder_change">Xem lịch sử thay đổi thông tin hóa đơn</label></td> </tr> <tr> <td class="t">&nbsp;</td> <td class="i"><input type="checkbox" name="t_thread" id="ad_thread" value="1" /> <label for="ad_thread">Quản lý bài viết</label></td> </tr> <tr> <td class="t">&nbsp;</td> <td class="i"><input type="checkbox" name="t_other" id="ad_other" value="1" /> <label for="ad_other">Truyền thông</label></td> </tr> <tr> <td class="t">&nbsp;</td> <td class="i"><input type="submit" value="Lưu thay đổi" name="sb_admin_add" class="blue-button" /></td> </tr> </table> </form> <br /> <div><strong>Ghi chú:</strong> <ul style="padding:6px 12px;margin:6px 12px;line-height:25px;"> <li>Ở phiên bản này, mặc định tài khoản admin có tất cả các quyền</li> <li>Trong phần phân quyền nếu không có quyền nào được chọn, hệ thống sẽ xóa tài khoản Admin đó khởi hệ thống.</li> </ul> </div></div> <h2 id="alert_only_admin" class="d-none">Chỉ có Adminstrator mới thực hiện được tính năng này</h2> </div> <br /> <script type="text/javascript">
+{tmp.js}
+function check_admin_add () {
+with (document.frm_admin_add) {
+if (t_email.value == '') {
+alert('Nhập ID hoặc email của thành viên');
+t_email.focus();
+return false;
+}
+if (t_time_block.checked == false
+&& t_thanhvien.checked == false
+&& t_oder.checked == false
+&& t_thread.checked == false
+&& t_other.checked == false) {
+if (confirm ('Xóa tài khoản admin - [OK] để tiếp tục') == false) {
+alert('Hãy lựa chọn quyền quản lý cho tài khoản này');
+return false;
+}
+}
+return true;
+}
+}
+function update_admin_complete (_alert) {
+alert(_alert);
+}
+(function () {
+if (isLogin == 1 || quan_ly_nhan_su == 1) {
+$('#main_admin_add').show();
+} else {
+$('#alert_only_admin').show();
+}
+for (var x in arr_admin_group) {
+if (arr_admin_group[x] == 1 && dog(x) != null) dog(x).checked = true;
+}
+}());
+</script> 

@@ -1,0 +1,17 @@
+<div class="w99"> <div class="clearfix"> <div class="titleCSS lf f62 bold"><a title="Danh sách nhóm blog" href="9999/blog_group">Danh sách nhóm blog</a> &raquo; Thêm nhóm blog</div> <div align="right" id="oiSelectGroupAdd" class="lf f38">&nbsp;</div></div> <div style="padding-bottom:20pt;margin-bottom:20pt"> <div id="addGroup1"> <form name="frm_blog_group_add" method="post" action="9999/process&module_id=blog_group_add" target="target_eb_iframe" onsubmit="return gadd.checkAAdd();"> <table cellpadding="0" cellspacing="0" width="100%" border="0" class="public-table"> <tr> <td valign="top" class="t">DS Nhóm cần thêm <span class="small d-block">Thêm nhiều nhóm cùng lúc, mỗi nhóm cách nhau bởi dấu xuống dòng.</span></td> <td class="i"><textarea name="t_a_ten" style="width:368px;height:128px"></textarea></td> </tr> <tr> <td class="t">&nbsp;</td> <td class="i"><input type="submit" name="b_a_submit" value="Thêm nhóm" class="blue-button" /></td> </tr> </table> </form> </div></div> </div> <br /> <br /> <br /> <script type="text/javascript">
+var gadd={
+checkAAdd:function() {
+with (document.frm_blog_group_add) {
+if (t_a_ten.value.length < 3) {
+alert('Nhập tên nhóm cần thêm');
+t_a_ten.focus();
+return false;
+}
+}
+return confirm('Xác nhận thao tác này');
+},
+completeAddGroup:function(a){
+window.location = web_link+ '9999/blog_group';
+}
+}
+</script> 

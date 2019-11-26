@@ -1,0 +1,1 @@
+<?php $dir_index='../../';include_once '../common.php';$file_temp=$dir_index.'temp/g/'.$act.'.php';if(file_exists($file_temp)){include $file_temp;}else{$file_temp=$dir_index.'eb-content/default/temp/g/'.$act.'.php';include $file_temp;}

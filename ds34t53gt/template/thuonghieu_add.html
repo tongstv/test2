@@ -1,0 +1,65 @@
+<div class="w99"> <div class="clearfix"> <div class="titleCSS lf f62 bold"><a href="9999/thuonghieu">Danh sách thương hiệu</a> &raquo; Thêm thương hiệu</div> <div align="right" id="oiSelectGroupAdd" class="lf f38">&nbsp;</div></div> <div style="padding-bottom:20pt;margin-bottom:20pt"> <div id="addGroup1"> <div class="titleCSS"><strong>Thêm thương hiệu cấp 1</strong></div> <form name="frm_thuonghieu_add" method="post" action="9999/process&module_id=thuonghieu_add" target="target_eb_iframe" onsubmit="return gadd.checkAAdd();"> <table cellpadding="0" cellspacing="0" width="100%" border="0" class="public-table"> <tr> <td valign="top" class="t">D.Sách T.Hiệu cần thêm <span class="small d-block">Thêm nhiều thương hiệu cùng lúc, mỗi thương hiệu cách nhau bởi dấu xuống dòng.</span></td> <td class="i"><textarea name="t_a_ten" style="width:368px;height:128px"></textarea></td> </tr> <tr> <td class="t">&nbsp;</td> <td class="i"><input type="submit" value="Thêm thương hiệu" class="blue-button" /></td> </tr> </table> </form> </div></div> </div> <br /> <br /> <br /> <script type="text/javascript">
+var arr_group_add = [
+'Thêm nhóm cấp'
+];
+var gadd={
+checkAAdd:function() {
+with (document.frm_thuonghieu_add) {
+if (t_a_ten.value.length < 3) {
+alert('Nhập tên nhóm cần thêm');
+t_a_ten.focus();
+return false;
+}
+}
+return confirm('Xác nhận thao tác này');
+},
+copyValue:function (str, id) {
+if (dog(id).value == '') {
+str = str.toLowerCase();
+str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+str = str.replace(/đ/g, "d");
+str = str.replace(/\s/g, "-");
+dog(id).value = str;
+}
+},
+showGroupAdd:function () {
+var str = '',
+j = 1;
+for (i = 0; i < arr_group_add.length; i++) {
+str += '<option value="' +j+ '">' +arr_group_add[i]+ ' ' +j+ '</option>';
+j++;
+}
+dog('oiSelectGroupAdd').innerHTML = '<select onchange="gadd.changeAddGroup(this.value);">' +str+ '</select>';
+},
+loadAGroup:function(){
+var str_ant = '', ant_id = 0, ant_ten = '';
+for (x in site_group) {
+ant_id = site_group[x].id;
+ant_ten = site_group[x].ten;
+/**/
+str_ant += '<option value="' +ant_id+ '">' +ant_ten+ '</option>';
+}
+dog('oi_a_b').innerHTML = '<select name="t_ant" class="w_select">' +str_ant+ '</select>';
+},
+changeAddGroup:function (id, gSite) {
+if (gSite && gSite == 'site') {
+} else {
+for (i = 1; i <= arr_group_add.length; i++) {
+$('#addGroup' +i).hide();
+}
+$('#addGroup' +id).fadeIn();
+}
+},
+completeAddGroup:function(){
+window.location = web_link+ '9999/thuonghieu';
+}
+}
+with (gadd) {
+showGroupAdd();
+}
+</script> 

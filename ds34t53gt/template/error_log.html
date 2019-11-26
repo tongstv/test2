@@ -1,0 +1,23 @@
+<style type="text/css"> #design_error_log ul { list-style:inside; line-height:25px; font-size:9pt; } </style> <div class="w99"> <div class="cf"> <div class="lf f62 titleCSS bold"><a href="9999/error_log">Error log</a> (<span id="show_total_error_log">0</span>) -&gt; <a href="9999/error_log&non_html=true">Non HTML</a></div> <div align="right" class="lf f38 cf"><a href="javascript://" class="blue-button d-block rf click-clear-data-error-log">Clear error log</a></div></div> <br /> <div align="center" class="small redcolor">Phần log này nhằm phát hiện các lỗi đã từng xảy ra trên website, chỉ để cho code website xem và sửa lỗi. Vui lòng không tự ý xóa log này trước khi lỗi được sửa.</div> <br /> <div align="center" id="show_warning_error_log" class="redcolor"></div> <div id="design_error_log">{tmp.log_content}</div></div> <br /> <script type="text/javascript">
+(function ( arr ) {
+arr = arr.split('\n');
+arr.reverse();
+if (arr.length > 1) {
+for (var i = 0, str = ''; i < arr.length; i++) {
+if (arr[i].replace(/\s|\n|\r|\t/g, '') != '') {
+str += '<li>' +arr[i]+ '</li>';
+}
+}
+$('#design_error_log').html( '<ul>' +str+ '</ul>' );
+$('#show_total_error_log').html( arr.length );
+if (arr.length > 500) {
+$('#show_warning_error_log').html( 'Số lượng bản ghi log đã quá nhiều, vui lòng xóa bớt' );
+}
+}
+})( $('#design_error_log').html() );
+$('.click-clear-data-error-log').off('click').click(function () {
+if ( confirm ('Xác nhận xóa log') == true ) {
+ajaxl('admin.php?act=error_log&clear_data=true', 'rME', 9);
+}
+});
+</script> 

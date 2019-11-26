@@ -1,0 +1,9 @@
+/* ---------------------------------------------------------------------- *\
+* Một công cụ xóa bỏ khoảng trắng trong Javascript, CSS, HTML...
+* Nguồn tài liệu đầy đủ truy cập tại: http://raovat.info/js
+* Phát triển bởi đội ngũ nhân viên Raovat.info - Project: itvn9online.
+* Công cụ này là miễn phí và bạn có thể phát triển hoặc phát hành lại nó.
+* Công cụ này được phát hành hy vọng sẽ có ích với cộng đồng, nhưng nó không đảm bảo bao hàm được hết các mục đích cụ thể.
+* Dự án: echbay.com
+\* ---------------------------------------------------------------------- */
+@charset "utf-8";.cf:before, .cf:after, .clearfix:before, .clearfix:after {content:"";display:table}.cf:after, .clearfix:after {clear:both}.cf, .clearfix {zoom:1}.rf {float:right}.lf {float:left}.iframe-border {border:1px #ccc solid}.iframe-content {padding:0;margin:0;width:100%;overflow:auto}.iframe-toolbar {background:#f5f5f5;border-bottom:1px #ccc solid;font-size:10pt}.iframe-toolbar a {text-decoration:none}.iframe-toolbar ul {margin:0;padding:3px 0;list-style:none}.iframe-toolbar li {float:left;padding:0 3px;margin:0 2px;border:1px #f5f5f5 solid;line-height:21px}.iframe-toolbar li:hover {background:#fff;border-color:#ccc}.iframe-toolbar .iframe-format {padding:6px}.iframe-submenu .sub-menu {background:#fff;position:absolute;width:188px;margin:0 0 0 -4px;padding:0;border:1px #ccc solid;left:-999pt;display:none}.iframe-submenu .sub-menu div {padding:2px 6px;margin:2px 0}.iframe-submenu .sub-menu div:hover {background:#f6f6f6}.iframe-submenu button, .iframe-toolbar button {background:none;border:0 none}.iframe-toolbar button {padding:2px}.iframe-submenu table {background:#ccc;cursor:pointer;padding:0;margin:0}.iframe-submenu td {height:15px;padding:0;margin:0;border:1px #000 solid}.iframe-submenu td:hover {border:1px #fff solid}.iframe-submenu:hover .sub-menu {left:auto;display:block}

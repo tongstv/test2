@@ -1,0 +1,5 @@
+<div class="clearfix"> <div class="titleCSS lf f38"><a href="9999/log_admin">Log Admin</a> ({tmp.totalThread})</div> <div class="lf f62 clearfix"> <div class="lf f38"> <form method="post" action="9999/log_admin"> <input type="text" name="t_search" value="{tmp.search}" /> <input type="submit" value="Tìm" class="blue-button" /> </form> </div> <div align="right" class="lf f62"> <div id="oi_quick_connect" class="rf"> <input title="Xem theo khoảng thời gian" type="button" id="oi_time_line_name" value="24 giờ qua" class="red-button" /> </div></div> </div></div> <br /> <table border="0" cellpadding="6" cellspacing="0" width="100%" class="table-list"> <tr class="table-list-title"> <td>Mã TV</td> <td>Thành viên</td> <td>Thời gian</td> <td>IP</td> <td>Mã hóa đơn</td> <td>Nội dung</td> </tr> {tmp.main_content} </table> <br /> <div>{tmp.str_page}</div> <br /> <script type="text/javascript">
+{tmp.js}
+var strLinkPager = '9999/log_admin';
+_global_js_eb._time_line.show(strLinkPager + type_search, type_display);
+</script> 

@@ -1,0 +1,35 @@
+<div style="border:1px #ccc solid;"> <div id="cse">Loading</div></div> <br /> <script src="http://www.google.com.vn/jsapi" type="text/javascript"></script> <script type="text/javascript">
+var key_tim_kiem = dog('search_keys').value;
+if ( key_tim_kiem.replace(/\s/g, '') == '' ) {
+key_tim_kiem = (function ( lnk ) {
+lnk = decodeURIComponent(lnk).split('/');
+lnk = (function ( arr ) {
+var lnk = arr[ arr.length - 1 ];
+if (lnk == '') {
+lnk = arr[ arr.length - 2 ];
+}
+return lnk;
+})( lnk );
+lnk = lnk.split('.htm')[0];
+lnk = g_func.non_mark_seo( lnk );
+lnk = lnk.replace(/-/g, ' ');
+if ( lnk.length < 3 ) {
+lnk = '';
+}
+return lnk;
+})( window.location.href );
+}
+google.load('search', '1', {
+language: 'vi',
+style: google.loader.themes.V2_DEFAULT
+});
+google.setOnLoadCallback(function () {
+var customSearchOptions = {};
+var customSearchControl = new google.search.CustomSearchControl('{tmp.cf_gse}', customSearchOptions);
+customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+customSearchControl.draw('cse');
+if (key_tim_kiem != '') {
+customSearchControl.execute(key_tim_kiem);
+}
+}, true);
+</script> 

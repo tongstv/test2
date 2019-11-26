@@ -1,0 +1,159 @@
+<style type="text/css"> #aMain { } .show_console_log { position:fixed; bottom:20px; left:0; right:0; height:60px; background:#fff; border-top:5px #F00 solid; line-height:32px; padding:10px 20px 50px 20px; overflow:auto; } .show_console_log * { padding:0; margin:0; } .show_console_log h1, .show_console_log h2, .show_console_log h3, .show_console_log h4, .show_console_log h5, .show_console_log h6 { } </style> <div class="show_console_log"> <div>URL: <span id="show_console_log_url"></span></div> <div class="cf"> <div class="lf f50"> <div id="show_console_log"></div></div> <div class="lf f50"> <div id="show_console_log2" style="padding-left:25px;"></div></div> </div></div> <div class="w99"> <div class="titleCSS bold">Kiểm tra mã HTML</div> <div>Đây là công cụ kiểm tra xem mã HTML có đầy đủ và hoạt động có ổn định hay không.</div> <br /> </div> <br /> <iframe id="check_html_eb_iframe" name="check_html_eb_iframe" src="about:blank" width="100%" height="600" frameborder="0" style="border:2px #333 solid;">Loading...</iframe> <script type="text/javascript">
+var __check_html = {
+_log : function ( str, id ) {
+if ( typeof str == 'undefined' || str == '' ) {
+return;
+}
+if ( typeof id == 'undefined' || id == '' ) {
+id = 'show_console_log';
+}
+dog(id, str);
+$('#' +id+ ' a').attr({
+target : '_blank'
+});
+},
+rs : function () {
+$('#check_html_eb_iframe').css({
+height : ( $('.afix-bottom-menu').offset().top - $('#check_html_eb_iframe').offset().top - 50 ) + 'px'
+});
+},
+show_location : function ( a_href ) {
+if ( a_href == './' ) {
+a_href = '';
+}
+if ( a_href.split('http://').length == 1 ) {
+a_href = web_link + a_href;
+}
+dog('show_console_log_url', '<a href="' +a_href+ '" target="_blank">' +a_href+ '</a>');
+},
+loat : function () {
+dog('check_html_eb_iframe').src = web_link;
+__check_html.show_location( web_link );
+__check_html.reloat();
+},
+reloat : function () {
+$('#check_html_eb_iframe').off('load').load(function () {
+setTimeout(function () {
+__check_html.check();
+$('.show_console_log').click();
+$( "#check_html_eb_iframe" ).contents().find('a').off('click').click(function () {
+__check_html._log('A click');
+var a_href = $(this).attr('href');
+__check_html.show_location( a_href );
+__check_html.reloat();
+});
+}, 800);
+});
+__check_html._log('Loading...');
+},
+check : function () {
+$( "#check_html_eb_iframe" ).contents().find('body').css({
+'padding-bottom' : '200px'
+});
+var str_show_log = '',
+str_show_2_log = '',
+str_show_vip2_log = '',
+str_h1 = '',
+str_title = $( "#check_html_eb_iframe" ).contents().find('title').html() || '';
+if ( str_title.length > 70 ) {
+str_title += ' <strong class="redcolor">Tiêu đề được khuyến nghị dưới 70 ký tự</strong>';
+}
+str_show_log += '<strong>TITLE:</strong> ' +str_title+ '<br /><hr />';
+str_show_log += '<div class="titleCSS bold">Site lang:</div>';
+var arr_tag = "xml:lang lang".split(" ");
+for (var i = 0; i < arr_tag.length; i++) {
+str_show_log += '<strong class="bold">' +arr_tag[i]+ ':</strong> ' +$( "#check_html_eb_iframe" ).contents().find( 'html' ).attr( arr_tag[i] ) || '<em>NULL</em>';
+str_show_log += '<br />';
+}
+str_show_log += '<hr />';
+var arr_tag = "h1 h2 h3 h4 h5 h6 meta link".split(" "),
+str_show_0_log = '';
+for (var i = 0; i < arr_tag.length; i++) {
+str_show_0_log = '<div class="bold">Tim thấy ' +$( "#check_html_eb_iframe" ).contents().find( arr_tag[i] ).length+ ' thẻ <span class="upper">' +arr_tag[i]+ '</span>:</div>';
+if ( arr_tag[i] == 'meta' ) {
+var meta_str = '',
+meta_name = '',
+meta_content = str_show_0_log;
+$( "#check_html_eb_iframe" ).contents().find( arr_tag[i] ).each(function () {
+meta_name = $(this).attr('name')
+|| $(this).attr('http-equiv')
+|| $(this).attr('property')
+|| '<em>NULL</em>';
+meta_name = meta_name.toLowerCase();
+meta_content = $(this).attr('content') || '<em>NULL</em>';
+meta_str += '<strong class="upper">' +meta_name+ '</strong>: ' +meta_content+ '<br />';
+if ( meta_name == 'content-language' ) {
+str_show_log += '<strong>' +meta_name+ '</strong>: ' +meta_content+ '<hr />';
+}
+});
+str_show_vip2_log += '<div class="titleCSS bold">META:</div>';
+str_show_vip2_log += meta_str;
+str_show_vip2_log += '<hr /><br />';
+}
+else if ( arr_tag[i] == 'link' ) {
+var link_rel = '',
+link_href = '',
+link_type = '',
+link_lang = '',
+link_str = '';
+$( "#check_html_eb_iframe" ).contents().find( arr_tag[i] ).each(function () {
+link_rel = $(this).attr('rel') || '<em>NULL</em>';
+link_type = $(this).attr('type') || '<em>NULL</em>';
+link_href = $(this).attr('href') || '<em>NULL</em>';
+link_lang = $(this).attr('hreflang') || '';
+link_str += '<strong class="upper">' +link_rel+ '</strong>: ' +link_href+ ' - <strong class="upper">TYPE: </strong> ' +link_type+ '<br />';
+if ( link_lang != '' ) {
+str_show_log += '<strong>' +link_rel+ '</strong>: ' +link_href+ ' - <strong class="upper">hreflang: </strong> ' +link_lang+ '<hr />';
+}
+});
+str_show_2_log += '<div class="titleCSS bold">LINK:</div>';
+str_show_2_log += link_str;
+str_show_2_log += '<hr /><br />';
+}
+else {
+if ( arr_tag[i] == 'h1' ) {
+var cout_h1 = $( "#check_html_eb_iframe" ).contents().find( arr_tag[i] ).length;
+if ( cout_h1 == 1 ) {
+str_h1 = $( "#check_html_eb_iframe" ).contents().find( arr_tag[i] ).html();
+} else if ( cout_h1 > 0 ) {
+str_h1 = '<span class="bluecolor">Trang của bạn chứa qua nhiều thẻ H1 (' +cout_h1+ ' thẻ). Khuyến nghị 1 thẻ</span>';
+} else {
+str_h1 = '<span class="redcolor">Trang của bạn không có thẻ H1 nào, đề nghị bổ sung thêm.</span>';
+}
+str_show_log += '<strong>H1:</strong> ' +str_h1+ '<hr />';
+}
+str_show_2_log += str_show_0_log;
+var for_each = 1;
+$( "#check_html_eb_iframe" ).contents().find( arr_tag[i] ).each(function () {
+str_show_2_log += '<' +arr_tag[i]+ '>' +$(this).html()+ '</' +arr_tag[i]+ '><br />';
+if ( for_each > 5 ) {
+return false;
+}
+for_each++;
+});
+str_show_2_log += '<hr /><br />';
+}
+}
+__check_html._log( str_show_log );
+__check_html._log( str_show_vip2_log + str_show_2_log, 'show_console_log2' );
+}
+};
+setTimeout(function () {
+__check_html.rs();
+__check_html.loat();
+}, 200);
+$('.show_console_log').off('click').click(function () {
+var h = 60;
+if ( $(this).height() > h + 50 ) {
+} else {
+h = 450;
+}
+$(this).animate({
+height : h+ 'px'
+});
+return false;
+});
+$(window).off('resize').resize(function () {
+__check_html.rs();
+});
+</script> 

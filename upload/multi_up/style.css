@@ -1,0 +1,54 @@
+body, html {
+	font-size:10pt;
+	font-family: Arial, Helvetica, sans-serif;
+	background:#fff;
+	margin:0;
+	padding:0;
+	outline:none;
+}
+a {
+	text-decoration:none;
+	color:#06C;
+}
+a:hover {
+	text-decoration:underline;
+}
+.d-none {
+	display:none
+}
+.cf:before, .cf:after, .clearfix:before, .clearfix:after {
+	content:"";
+	display:table
+}
+.cf:after, .clearfix:after {
+	clear:both
+}
+.cf, .clearfix {
+	zoom:1
+}
+.lf {
+	float:left
+}
+.rf {
+	float:right
+}
+.f38 {
+	width:38%
+}
+.f62 {
+	width:62%
+}
+.upload-frm input {
+	cursor:pointer
+}
+.upload-frm input[type=text] {
+}
+.upload-frm input[type=submit] {
+}
+.upload-frm {
+}
+#upload_process {
+	visibility:hidden;
+	cursor:pointer
+}
+

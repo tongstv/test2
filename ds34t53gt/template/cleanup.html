@@ -1,0 +1,45 @@
+<div class="w99"> <h2 class="titleCSS">Tính năng dọn dẹp dữ liệu</h2> <br /> <div style="width:600px;margin:0 auto"> <h2>Nhiệm vụ chính:</h2> <div>Chuyển những dữ liệu cũ sang một hệ thống lưu trữ hoặc xóa bỏ những dữ liệu đã lỗi thời.</div> <br /> <h3>Mục đích:</h3> <div>Thu gọn database, giữ cho website luôn trong trạng thái mới, cải thiện tốc độ truy vấn dữ liệu.</div> <br /> <h3>Sử dụng:</h3> <br /> <blockquote> <h3> <input type="button" value="Xóa log Admin" onclick="cleanup_func.log_admin()" class="blue-button" /> </h3> <div><strong>Xóa bỏ</strong> log admin từ 30 ngày trước.</div> <br /> <h3> <input type="button" value="Xóa log PHPMailer" onclick="cleanup_func.phpmailer()" class="blue-button" /> </h3> <div><strong>Xóa bỏ</strong> log gửi mail quảng cáo từ 10 ngày trước.</div> <br /> <h3> <input type="button" value="Dọn dẹp hóa đơn" onclick="cleanup_func.bakInvoice()" class="blue-button" /> </h3> <div>Quy trình thực hiện (phụ thuộc một phần vào Admin quản lý hóa đơn)</div> <ol style="line-height:22px"> <li>Xác định những hóa đơn từ 30 ngày trở về trước.</li> <li><strong>Xóa bỏ</strong> những hóa đơn có trạng thái là <strong>[ Đã hủy ]</strong> &raquo; nếu Admin quản lý hóa đơn làm tốt khâu trạng thái hóa đơn thì hệ thống sẽ xử lý được nhiều hơn.</li> <li><strong>Chuyển</strong> những hóa đơn còn lại sang phần vùng lưu trữ mới.</li> </ol> <br /> </blockquote> </div></div> <br /> <script type="text/javascript">
+var m = '';
+var cleanup_func = {
+_cf:function () {
+return confirm(m+ "\nChỉ nên sử dụng tính năng này ngoài giờ cao điểm.\nNhấn [ OK ] để tiếp tục.");
+},
+log_admin:function () {
+m = 'Xóa Log Admin';
+if (this._cf() == true) {
+this.op('9999/process&module_id=cleanup_log_admin');
+return true;
+}
+return false;
+},
+phpmailer:function () {
+m = 'Xóa Log PHPMailer';
+if (this._cf() == true) {
+this.op('9999/process&module_id=cleanup_log_phpmailer');
+return true;
+}
+return false;
+},
+bakInvoice:function () {
+m = 'Tối ưu lưu trữ hóa đơn';
+if (this._cf() == true) {
+this.op('9999/process&module_id=cleanup_log_invoice');
+return true;
+}
+return false;
+},
+op:function (uri) {
+window.open(uri, 'target_eb_iframe');
+dog('rME').style.opacity = '0.2';
+},
+cpl:function (_alert) {
+if (_alert && _alert != '') {
+alert(_alert);
+} else {
+alert(m);
+}
+dog('target_eb_iframe').src = 'about:blank';
+dog('rME').style.opacity = '1';
+}
+}
+</script> 

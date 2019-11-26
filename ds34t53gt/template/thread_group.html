@@ -1,0 +1,17 @@
+<style> .bwg { width:26px; } </style> <div class="w99"> <div class="clearfix"> <div class="lf f62"> <div class="titleCSS"><a title="Danh sách nhóm tin" href="9999/thread_group">Danh sách nhóm tin</a>{tmp.gname}</div></div> <div class="lf f38"> <div align="right"><a title="Thêm Nhóm tin mới" class="blue-button" href="9999/thread_group_add">+ Thêm nhóm mới</a></div></div> </div> <blockquote>{tmp.main_content}</blockquote> </div> <br /> <div class="redcolor" style="position:fixed;top:120px;right:10px;">{tmp.khong_duoc_xoa}</div> <script type="text/javascript">
+var act_uri = 'admin.php?act=thread_group';
+$('.click-order-ant').off('click').click(function () {
+var a = $(this).attr('data-id') || '';
+ajaxl( act_uri+ '&act_group=order&id=' +a+ '&move=' +$(this).attr('data-move'), 'rME', 9 );
+});
+$('.click-status-ant').off('click').click(function () {
+var a = $(this).attr('data-id') || '';
+ajaxl( act_uri+ '&act_group=status&id=' +a, 'rME', 9 );
+});
+$('.click-delete-ant').off('click').click(function () {
+if ( confirm( $(this).attr('title')+ ' - Xác nhận thao tác') == true ) {
+var a = $(this).attr('data-id') || '';
+ajaxl( act_uri+ '&act_group=delete&id=' +a, 'rME', 9 );
+}
+});
+</script> 

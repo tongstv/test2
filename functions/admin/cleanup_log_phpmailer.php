@@ -1,0 +1,1 @@
+<?php $m='';$last10day=$date_time-(24*3600*10);$sql="DELETE FROM tbl_log_phpmailer WHERE lpm_ngaygui < ".$last10day;$func->q($sql);die('<script type="text/javascript">parent.cleanup_func.cpl()</script>'); 

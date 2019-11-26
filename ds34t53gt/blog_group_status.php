@@ -1,0 +1,1 @@
+<?php $arr_blg_trangthai=array(array('img'=>'images/prem_n.gif','ten'=>'[ Ẩn ]','class'=>'fa-lock-alt'),array('img'=>'images/prem_y.gif','ten'=>'Hiển thị','class'=>'fa-unlock-alt'),array('img'=>'images/icon/mode_threaded.gif','ten'=>'Tin tức','class'=>'fa-newspaper-o'));

@@ -1,0 +1,1 @@
+<?php if(isset($_REQUEST['status'])){$status=(int)$_REQUEST['status'];$sql=$func->q("UPDATE tbl_blog SET bl_trangthai=".$status." WHERE bl_id=".$id);die('<strong>OK</strong>');}else{die('<strong>Status <em>NULL</em></strong>');} 

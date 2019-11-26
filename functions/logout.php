@@ -1,0 +1,1 @@
+<?php $arr_cache_session=array('ads_referre','shoppjng_cart');foreach($arr_cache_session as $v){if(isset($_SESSION[$v])){$$v=$_SESSION[$v];}}session_destroy();foreach($arr_cache_session as $v){if(isset($_SESSION[$v])){$_SESSION[$v]=$$v;}}setcookie('ctv_id',0,time()-1);die('<script type="text/javascript">window.location="'.$web_link.'";</script>'); 

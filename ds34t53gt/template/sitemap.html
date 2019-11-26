@@ -1,0 +1,14 @@
+<div class="w99"> <div class="titleCSS bold">Sitemap XML</div> <div>Khi nhấn vào cập nhật, hệ thống sẽ tự động tìm những bài viết, dữ liệu có trong database để tạo thành một sitemap hoàn chỉnh. Chức năng này không cần dùng nhiều. Một tuần một lần là quá đủ.</div> <div align="center" style="padding:30px 0;line-height:30px"> <div> <input type="checkbox" name="oi_update_now" id="oi_update_now" value="1" checked /> <label for="oi_update_now">Bỏ qua chế độ kiểm tra Sitemap (chỉ dùng khi chắc chắn sẽ update sitemap)</label> </div> <div><a onclick="return sitemap_func.update()" href="javascript://" class="blue-button">Cập nhật Sitemap (Tự động)</a></div></div> <br /> <div align="center"><a id="view_sitemap" href="sitemap.xml" target="_blank">Xem &raquo;</a></div></div> <br /> <script type="text/javascript">
+var sitemap_func={
+update:function () {
+if (confirm('Cập nhật Sitemap - Nhấn [OK] để tiếp tục') == true) {
+var url = web_link+ 'actions/sitemap';
+if (dog('oi_update_now').checked == true) {
+url += '&update_now=true';
+}
+window.open(url, 'target_eb_iframe');
+}
+return false;
+}
+};
+</script> 

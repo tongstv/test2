@@ -1,0 +1,1 @@
+<?php session_destroy();setcookie('ctv_id',0,time()-1);die('<a title="Đăng nhập vào hệ thống" href="javascript:ajaxl(\'guest.php?act=dangnhap\', \'o_popup\', 1);" rel="external"><strong>Đăng nhập</strong></a> hoặc <a title="Đăng ký tài khoản mới" href="javascript:ajaxl(\'guest.php?act=dangky\', \'o_popup\', 1);" rel="external"><strong>Đăng ký</strong></a>'); 

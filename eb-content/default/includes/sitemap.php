@@ -1,0 +1,1 @@
+<?php $xml_file=$dir_index.'sitemap.txt';if(file_exists($xml_file)){if(isset($_GET['update_now'])){$func->update_sitemap();die('<script type="text/javascript">alert("Update sitemap")</script>');}else{$time_file=filemtime($xml_file);if($date_time-$time_file>24*360){$func->update_sitemap();}}}else{echo 'sitemap file not exist';}

@@ -1,0 +1,15 @@
+<div class="clearfix"> <div class="titleCSS lf f38"><a href="9999/members">Danh sách Thành Viên</a> ({tmp.totalThread})</div> <div class="lf f62 cf"> <div class="rf div-inline-block"> <div class="d-none"><a title="Export members" href="9999/members&module=export" class="blue-button" target="_blank">Export members</a></div> <div class="d-none"><a title="Hiển thị danh sách thành viên còn tiền" href="9999/members&module=money" class="blue-button">Tiền</a></div> <div><a title="Hiển thị danh sách admin" href="9999/members&module=admin" class="blue-button">Admin</a></div> <div><a title="Thêm tài khoản Admin khác" href="9999/admin_add" class="blue-button">Thêm admin</a></div></div> </div></div> <div class="clearfix"> <div class="lf f38"> <div class="uiQuickSearch"> <form name="frm_search" action="9999/members&module=search" method="post"> <input type="text" name="s_iw" value="{tmp.key}" class="a-input-search" /> <input type="submit" name="b_sub" value="Tìm" class="blue-button" /> </form> </div></div> <div class="lf f62"> <div id="show_search_alpha" class="clearfix searchByChar">&nbsp;</div></div> </div> <br /> <table border="0" cellpadding="6" cellspacing="0" width="100%" class="table-list"> <tr class="table-list-title"> <td>Mã TV</td> <td>@Email</td> <td>Họ & Tên</td> <td>Tài khoản</td> <td>Đăng nhập</td> </tr> {tmp.thread_list} </table> <br /> <div>{tmp.p_page}</div> <br /> <script type="text/javascript">
+(function () {
+var arr_alpha_key = ['so','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var str = '',
+str_name = '';
+for (var i = 0; i < arr_alpha_key.length; i++) {
+str_name = arr_alpha_key[i];
+if (str_name == 'so') {
+str_name = 'Số';
+}
+str += '<div><a href="9999/members&module=search&char=' +arr_alpha_key[i]+ '">' +str_name+ '</a></div>';
+}
+dog('show_search_alpha').innerHTML = str;
+})();
+</script> 

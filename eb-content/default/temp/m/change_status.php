@@ -1,0 +1,1 @@
+<?php $hd_trangthai=4;$func->q("UPDATE tbl_in_con_voi SET hd_trangthai = ".$hd_trangthai." WHERE hd_id = ".$id." AND tv_id = ".$mtv_id);$func->log_user('Hủy đơn hàng #'.$id);echo '<span class="hd_status'.$hd_trangthai.'">'.$arr_hd_trangthai[$hd_trangthai].'</span>';exit(); 

@@ -1,0 +1,121 @@
+<style> .table-list { border-top:1px #f0f0f0 solid; border-right:0 none; } .table-list td { border-bottom:1px #f0f0f0 solid; border-left:0 none; padding:8px; } .table-list a { } </style> <div class="clearfix" style="padding:10px 0"> <div class="titleCSS lf f38"><a id="invoice_display_default" title="Chỉ những hóa đơn có do quảng cáo" href="9999/log_cart">Thống kê quảng cáo</a> | <a id="invoice_display_all" title="Xem tất cả hóa đơn" href="9999/log_cart&invoice_display=all">Tất cả hóa đơn</a> ({tmp.totalThread})</div> <div align="right" class="lf f62 cf"> <div class="lf f50"> <form name="frm_search" method="get" action="ds34t53gt.php" onsubmit="return check_search_log()"> <input type="hidden" name="act" value="log_cart" /> <input type="text" name="q" value="" title="Tìm kiếm theo từ khóa" /> <input type="hidden" name="d" value="" /> <input type="submit" value="Tìm" class="blue-button" /> </form> </div> <div class="lf f50 cf"> <div id="oi_quick_connect" class="rf"> <input title="Xem theo khoảng thời gian" type="button" id="oi_time_line_name" value="24 giờ qua" class="red-button" /> </div></div> </div></div> <br /> <table border="0" cellpadding="6" cellspacing="0" width="100%" class="table-list"> <tr class="table-list-title"> <td>Mã HĐ</td> <td>Sản phẩm</td> <td>Nguồn dữ liệu/ Từ khóa</td> <td>Chiến dịch</td> <td>Ngày gửi</td> <td>Return</td> </tr> {tmp.main_content} </table> <h4 align="right" style="padding:20px 0;font-size:13pt">Doanh thu ước tính: <strong class="redcolor">{tmp.doanh_thu}</strong> vnđ</h4> <div>{tmp.str_page}</div> <br /> <script type="text/javascript">
+{tmp.js}
+var strLinkPager = '9999/log_cart';
+function check_search_log () {
+var f = document.frm_search;
+if (f.q.value.length < 3) {
+alert('Nhập từ khóa tìm kiếm');
+f.q.focus();
+return false;
+}
+return true;
+}
+(function () {
+if (window.location.href.indexOf('invoice_display') != -1) {
+$('#invoice_display_all').addClass('bold');
+strLinkPager += '&invoice_display=all';
+} else {
+$('#invoice_display_default').addClass('bold');
+}
+if (for_site != '') strLinkPager += '&for_site=' +for_site;
+if (for_referene != '') strLinkPager += for_referene;
+if (pro_id > 0) {
+strLinkPager += '&id=' +pro_id;
+}
+})();
+(function () {
+var f = document.frm_search;
+f.q.value = (function (s) {
+s = s.split('&q=');
+if (s.length > 1) return s[1].split('&')[0];
+return '';
+})(window.location.href);
+f.d.value = type_display;
+})();
+(function () {
+var arr_referral = document.getElementsByClassName('referral-to-external'),
+source_inner = '',
+source_lnk = '',
+qq = '',
+i = 0,
+x = arr_referral.length,
+arr_search_key = [],
+arr_search_key_index = [
+'q',
+'p'
+],
+arr_add_key_to_q = [
+'?',
+'&amp;',
+'&'
+],
+ja = 0;
+for (var a = 0; a < arr_add_key_to_q.length; a++) {
+for (var j = 0; j < arr_search_key_index.length; j++) {
+arr_search_key[ja] = arr_add_key_to_q[a] + arr_search_key_index[j] + '=';
+ja++;
+}
+}
+while (x--) {
+source_inner = arr_referral[i].innerHTML;
+if (source_inner == '') {
+arr_referral[i].innerHTML = '/';
+} else {
+source_lnk = source_inner.replace('www.', '').split('//')[1].split('/')[0];
+var str_inner = '';
+for (var j = 0; j < arr_search_key.length; j++) {
+qq = source_inner.split(arr_search_key[j]);
+if (qq.length > 1) {
+qq = qq[1].split('&')[0];
+if (qq != '') {
+try {
+qq = decodeURIComponent(qq);
+qq = qq.replace(/\+/g, ' ');
+} catch (e) {
+console.log(qq);
+}
+str_inner = '<div class="clearfix"><div class="lf f50"><a href="9999/log_cart&for_site=' +source_lnk+ '">' +source_lnk+ '</a> <a href="' +source_inner+ '" target="_blank">-&gt;</a></div><div class="lf f50">' +qq+ '</div></div>';
+}
+break;
+}
+}
+if (str_inner == '') {
+str_inner = '<a href="9999/log_cart&for_site=' +source_lnk+ '">' +source_lnk+ '</a> <a href="' +source_inner+ '" target="_blank">-&gt;</a>';
+}
+arr_referral[i].innerHTML = str_inner;
+}
+i++;
+}
+})();
+$('.referrence-to-campaign').each(function () {
+var cam = $(this).html(),
+str = '',
+utm = '';
+cam = cam.split('utm_source=');
+if (cam.length > 1) {
+for (var i = 1; i < cam.length; i++) {
+if (str != '') str += '/ ';
+utm = cam[i].split('&')[0];
+str += '<a href="9999/log_cart&q=utm_source=' +utm+ '">' +utm+ '</a>';
+}
+}
+$(this).html( str );
+});
+/*
+$('.referrence-to-keyword').each(function () {
+var cam = $(this).html(),
+str = '',
+utm = '';
+cam = cam.split('q=');
+if (cam.length > 1) {
+for (var i = 1; i < cam.length; i++) {
+if (str != '') str += '/ ';
+utm = cam[i].split('&')[0];
+str += '<a href="9999/log_cart&q=' +utm+ '">' +utm.replace(/\+/g, ' ')+ '</a>';
+}
+}
+$(this).html( str );
+});
+*/
+_global_js_eb._time_line.show(strLinkPager, type_display);
+</script> 

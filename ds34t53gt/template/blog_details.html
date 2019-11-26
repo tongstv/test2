@@ -1,0 +1,23 @@
+<div class="w99"> <div class="titleCSS"><a href="9999/blog"><strong>Blog</strong></a> &raquo; <a href="blog-{tmp.id}/{tmp.bl_seo}.html">{tmp.bl_tieude}</a></div> <form name="frm_thread_add" method="post" action="9999/process&module_id=blog_details&bl_id={tmp.id}" target="target_eb_iframe" onsubmit="return check_blog_details();"> <div class="d-none"> <input type="text" name="t_seo" value="{tmp.bl_seo}" /> <input type="text" name="t_img" value="{tmp.bl_img}" /> </div> <table cellpadding="0" cellspacing="0" width="100%" border="0" class="public-table"> <tr> <td class="t">Nhóm</td> <td class="i">{tmp.blg_id}</td> </tr> <tr> <td class="t">Trạng thái</td> <td class="i">{tmp.bl_trangthai}</td> </tr> <tr> <td class="t">Tiêu đề</td> <td class="i"><input type="text" name="t_tieude" value="{tmp.bl_tieude}" class="m" /></td> </tr> <tr> <td colspan="2"><textarea name="t_noidung" id="t_noidung" style="width: 100%; height: 270px">{tmp.bl_noidung}</textarea></td> </tr> <tr> <td class="t">Ngày cập nhật</td> <td class="i">{tmp.bl_ngaygui}</td> </tr> <tr> <td valign="top" class="t">Ảnh đại diện</td> <td id="_oiAvatar" class="i"><em>Chưa có ảnh đại diện. Upload hoặc chọn trong Alum ảnh đã đăng</em></td> </tr> <tr> <td valign="top" class="t"><a href="javascript:ajaxl('member.php?act=avatar&id=0', 'oiAvatar', 9)"><b>Ảnh đã đăng:</b></a></td> <td id="oiAvatar" class="i">&nbsp;</td> </tr> </table> <div style="position:fixed;bottom:50px;right:30px"> <input type="submit" value="Lưu thay đổi" class="blue-button" style="padding:10px 20px;font-size:11pt" /> </div> </form> <div class="cf"> <div class="lf" style="width:28%">&nbsp;</div> <div class="lf" style="width:72%"> <!-- Khung upload lên picasa web --> <iframe id="target_picasa_uploader" name="target_picasa_uploader" src="about:blank" width="100%" height="50" frameborder="0" scrolling="no">Loading...</iframe> <script type="text/javascript" src="javascript/upload_subdomain.js?v={tmp.web_version}"></script> </div></div> </div> <br /> <script type="text/javascript" src="javascript/thread_check.js?v={tmp.web_version}"></script> <script type="text/javascript">
+/* func */
+function check_blog_details () {
+var f = document.frm_thread_add;
+if (f.t_tieude.value.length < 3) {
+alert('Tiêu đề bài viết quá ngắn');
+f.t_tieude.focus();
+return false;
+}
+remove_html_comments( 't_noidungwysiwyg' );
+create_link_for_htacess();
+return true;
+}
+ajaxl('member.php?act=avatar&id=0', 'oiAvatar', 9);
+(function ( f ) {
+if ( f.t_img.value != '' ) {
+addAvatar( f.t_img.value );
+}
+})( document.frm_thread_add );
+CKEDITOR.replace( 't_noidung', {
+height : 350
+});
+</script> 

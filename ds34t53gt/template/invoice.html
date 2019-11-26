@@ -1,0 +1,127 @@
+<style> .table-list { border-top:1px #f0f0f0 solid; border-right:0 none; } .table-list td { border-bottom:1px #f0f0f0 solid; border-left:0 none; padding:8px; } a.a-hidden-invoice { color:#ccc } #str_hd_ip_multi div { float:left; width:25%; } </style> <div class="clearfix" style="padding:10px 0"> <div class="titleCSS lf f38"><a href="9999/invoice"><strong>Danh sách hóa đơn</strong></a> ({tmp.totalThread}) <span class="small">{tmp.show_invoice_status}</span></div> <div class="lf f62 clclearfix"> <div class="lf f50"> <form name="frm_search_invoice" id="frm_search_invoice" method="post" action="9999/invoice&ost=search" onsubmit="return invoice_func.check_search()"> <div class="clearfix"> <div id="show_select_search" class="lf" style="margin-right:5px">&nbsp;</div> <div class="lf"> <input type="text" name="invoice_key" id="oi_invoice_key" title="Tìm kiếm" value="{tmp.invoice_key}" maxlength="20" style="background:#f8f8f8;width:128px;padding:4px 6px;border:1px #ccc solid;border-radius:3pt" /> <input type="text" name="status_invoice" id="status_invoice" value="" class="d-none" /> <div style="position:absolute;top:-99px"> <input type="submit" value="Tìm" /> </div></div> </div> </form> </div> <div class="lf f50"> <div class="cf"> <div class="lf f62">&nbsp;</div> <div align="right" id="oi_quick_connect" class="lf f38"> <input title="Xem theo khoảng thời gian" type="button" id="oi_time_line_name" value="7 ngày qua" class="red-button small" /> </div></div> <div> <input type="button" data-rel="admin.php?act=invoice_restore" title="Chuyển đổi chế độ xem dữ liệu" value="{tmp.str_view_restore}" class="{tmp.class_button} small click-load-view-invoice" /> <input type="button" data-rel="admin.php?act=invoice_city" title="Xem đơn theo khu vực Tỉnh/ Thành phố" value="{tmp.by_city}" class="blue-button small click-load-view-invoice" /> <input type="button" data-rel="admin.php?act=invoice_product" title="Hiển thị sản phẩm kèm theo" value="{tmp.by_product}" class="blue-button small click-load-view-invoice d-none" /> </div></div> </div></div> <div class="w99"> <div id="show_if_view_by_ip" class="d-none" style="position:relative;"> <div style="position:absolute;right:0;"><a href="javascript://" class="redcolor">Khóa các hóa đơn của IP này</a></div></div> <div title="Các IP có từ 2 đơn hàng trở lên" id="str_hd_ip_multi" class="d-none cf"></div></div> <br /> <table border="0" cellpadding="6" cellspacing="0" width="100%" class="table-list ip-invoice-alert"> <tr class="table-list-title"> <td>Mã HĐ</td> <td>S.Phẩm</td> <td>Thành viên</td> <td>Điện thoại</td> <td>Địa chỉ</td> <td>Ngày gửi</td> <td>Trạng thái</td> </tr> {tmp.main_content} </table> <br /> <div>{tmp.part_page}</div> <br /> <script type="text/javascript">
+{tmp.js}
+var invoice_func={
+aname:function () {
+var arr_aname = document.getElementsByName('alopicaso');
+var arr_check_name = [];
+var str_check_name = '';
+for (i = 0; i < arr_aname.length; i++) {
+str_check_name = arr_aname[i].innerHTML;
+if (arr_check_name[str_check_name]) {
+arr_aname[i].style.backgroundColor = '#FFFFCC';
+} else {
+arr_check_name[str_check_name] = true;
+}
+arr_aname[i].innerHTML = str_check_name.split('@')[0];
+}
+},
+select_search:function () {
+var arr_select_search = [{
+'id': 'id',
+'ten': 'Mã hóa đơn'
+}, {
+'id': 'dt',
+'ten': 'Số điện thoại'
+}, {
+'id': 'sp',
+'ten': 'Tên sản phẩm'
+}];
+var str = '',
+sl = '';
+for (var i = 0; i < arr_select_search.length; i++) {
+if (arr_select_search[i].id == type_search) {
+sl = ' selected="selected"';
+} else {
+sl = '';
+}
+str += '<option value="' +arr_select_search[i].id+ '"' +sl+ '>' +arr_select_search[i].ten+ '</option>';
+}
+dog('show_select_search').innerHTML = '<select name="type_search">' +str+ '</select>';
+},
+check_search:function () {
+if (dog('oi_invoice_key').value == '') {
+alert('Nhập từ khóa tìm kiếm');
+dog('oi_invoice_key').focus();
+return false;
+}
+return true;
+}
+};
+with (invoice_func) {
+aname();
+select_search();
+}
+(function () {
+if (view_status != '') {
+dog('status_invoice').value = view_status.split('=')[1];
+strLinkPager += view_status;
+}
+})();
+var click_cho_phep_change = 1;
+$('.click-load-view-invoice').click(function () {
+if (click_cho_phep_change == 1) {
+click_cho_phep_change = 0;
+var a = $(this).attr('data-rel') || '';
+if (a != '') {
+$('#rME').css({
+opacity : 0.2
+});
+ajaxl(a, 'rME' ,1, function () {
+$('#rME').css({
+opacity : 1
+});
+click_cho_phep_change = 1;
+});
+}
+}
+});
+_global_js_eb._time_line.show(strLinkPager, type_display);
+/*
+* Kiểm tra các IP trùng lặp trong hệ thống
+*/
+(function () {
+var arr_ip = {},
+str = '',
+ccl = function ( c ) {
+return '_' +c.replace(/\./g, '_');
+};
+$('.ip-invoice-alert tr').each(function () {
+var a = $(this).attr('data-ip') || '';
+if (a != '') {
+if (typeof arr_ip[a] == 'undefined') {
+arr_ip[a] = 0;
+}
+$(this).addClass( ccl( a ) );
+arr_ip[a] += 1;
+}
+});
+for (var x in arr_ip) {
+if ( arr_ip[x] > 1 ) {
+str += '<div><a href="9999/invoice&ip=' +x+ '" target="_blank">' +x+ ' -&gt; ' +arr_ip[x]+ '</a></div>';
+var color = 'FFF7CB';
+if ( arr_ip[x] > 20 ) {
+color = 'FFD800';
+} else if ( arr_ip[x] > 10 ) {
+color = 'FFE035';
+} else if ( arr_ip[x] > 3 ) {
+color = 'FFEA74';
+}
+$( '.' +ccl(x) ).css({
+background : '#' +color
+});
+}
+}
+if ( str != '' ) {
+$('#str_hd_ip_multi').show().removeClass('d-none').html( str );
+}
+if ( khoa_don_theo_ip != '' && $('.ip-invoice-alert tr').length > 3 ) {
+$('#show_if_view_by_ip').show().removeClass('d-none');
+$('#show_if_view_by_ip a').off('click').click(function () {
+if ( khoa_don_theo_ip != '' && confirm('Xác nhận khóa toàn bộ đơn gửi từ IP: ' +khoa_don_theo_ip) == true ) {
+var uri = 'admin.php?act=invoice&ip=' +khoa_don_theo_ip+ '&khoa_ip=true';
+ajaxl(uri, 'rME', 9);
+}
+});
+}
+})();
+</script> 

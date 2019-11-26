@@ -1,0 +1,35 @@
+<style type="text/css"> .capitalize-case { text-transform:capitalize } </style> <div align="right">Mặc định chỉ hiển thị trong <a onclick="show_all_inconvoi()" href="javascript://"><strong>Ngày gần đây nhất</strong></a>{tmp.str_hd_ngaygui}. Vào đây để <a onclick="show_all_inconvoi('all')" href="javascript://"><strong>xem tất cả</strong></a></div> <h3>Tổng cộng: {tmp.totalThread}</h3> <div style="font-size:11pt">Trong danh sách này, hệ thống kiểm tra sự trùng lặp thông tin của khách hàng và đưa ra cảnh báo: <ul style="list-style:inside"> <li>Điện thoại màu đỏ: là số điện thoại hệ thống đã được sử dụng để đăng ký trước đó.</li> <li>Email màu đỏ: là email mail đã được sử dụng để đăng ký trước đó.</li> </ul> </div> <br /> <table width="100%" cellpadding="0" cellspacing="0" border="0" class="export-to-excel"> <tr style="font-weight:bold;text-align:center"> <td>STT</td> <td>Mã hóa đơn</td> <td>Thời gian</td> <td>Họ và tên</td> <td>Điện thoại</td> <td>Email</td> <td>Địa chỉ</td> </tr> {tmp.thread_list} </table> <br /> <script type="text/javascript">
+function show_all_inconvoi (o) {
+var uri = window.location.href.split('&show_all')[0];
+if (o && o != '') {
+uri += '&show_all=true';
+}
+window.location = uri;
+}
+(function () {
+var arrEmailList = $('.invoiceGiovangEmail');
+var cacheGetEmail = [];
+for (var i = 0; i < arrEmailList.length; i++) {
+var emailContent = g_func.trim(arrEmailList[i].innerHTML);
+if (cacheGetEmail[emailContent]) {
+$(arrEmailList[i]).addClass('redcolor');
+}
+else {
+cacheGetEmail[emailContent] = true;
+}
+}
+var arrPhoneList = $('.invoiceGiovangPhone');
+var cacheGetPhone = [];
+for (var i = 0; i < arrPhoneList.length; i++) {
+var phoneContent = g_func.trim(arrPhoneList[i].innerHTML);
+phoneContent = phoneContent.replace(/\s/gi, '');
+arrPhoneList[i].innerHTML = phoneContent;
+if (cacheGetPhone[phoneContent]) {
+$(arrPhoneList[i]).addClass('redcolor');
+}
+else {
+cacheGetPhone[phoneContent] = true;
+}
+}
+})();
+</script> 

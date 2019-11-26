@@ -1,0 +1,17 @@
+<style> .bwg { width:26px; } </style> <div class="w99"> <div class="clearfix"> <div class="lf f62"> <div class="titleCSS"><a href="9999/thuonghieu">Danh sách thương hiệu</a>{tmp.gname}</div></div> <div class="lf f38"> <div align="right"><a class="blue-button" href="9999/thuonghieu_add">+ Thêm thương hiệu</a></div></div> </div> <blockquote>{tmp.main_content}</blockquote> </div> <br /> <script type="text/javascript">
+var act_uri = 'admin.php?act=thuonghieu';
+$('.click-order-th').off('click').click(function () {
+var a = $(this).attr('data-id') || '';
+ajaxl( act_uri+ '&act_group=order&id=' +a+ '&move=' +$(this).attr('data-move'), 'rME', 9 );
+});
+$('.click-status-th').off('click').click(function () {
+var a = $(this).attr('data-id') || '';
+ajaxl( act_uri+ '&act_group=status&id=' +a, 'rME', 9 );
+});
+$('.click-delete-th').off('click').click(function () {
+if ( confirm( $(this).attr('title')+ ' - Xác nhận thao tác') == true ) {
+var a = $(this).attr('data-id') || '';
+ajaxl( act_uri+ '&act_group=delete&id=' +a, 'rME', 9 );
+}
+});
+</script> 

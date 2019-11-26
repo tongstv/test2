@@ -1,0 +1,1 @@
+// dùng chung với thread_group_b_details

@@ -1,0 +1,1 @@
+<?php $web_title='Tìm kiếm';$str_page=$func->str_template($dir_index.'template/g/search_404.html',array('tmp.cf_gse'=>$cf_gse,'tmp.cf_dienthoai'=>nl2br($cf_dienthoai),'tmp.cf_yahoo'=>$func->yahoo_support($cf_yahoo),'tmp.cf_skype'=>$func->skype_support($cf_skype)));

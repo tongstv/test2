@@ -1,0 +1,67 @@
+<div class="w99"> <div class="titleCSS"><a href="9999/members"><b>Thành viên</b></a> &raquo; Thông tin thành viên</div> <div id="hidden_member_details"> <form name="frm_canhan" method="post" action="9999/process&module_id=member_details&tv_id={tmp.tv_id}" target="target_eb_iframe"> <input type="hidden" name="t_email" value="{tmp.tv_email}" /> <input type="hidden" name="t_money" id="oi_money" value="{tmp.tv_money}" /> <table cellpadding="0" cellspacing="0" width="100%" border="0" class="public-table"> <tr> <td class="t">Mã tài khoản</td> <td class="i"><span class="bold redcolor">{tmp.tv_id}</span></td> </tr> <tr> <td class="t">Phân quyền</td> <td class="i">{tmp.sub_str_admin}</td> </tr> <tr> <td class="t">E-mail</td> <td class="i bold bluecolor">{tmp.tv_email}</td> </tr> <tr> <td class="t">Họ và tên</td> <td class="i"><input type="text" name="t_hoten" value="{tmp.tv_hoten}" class="l" /></td> </tr> <tr> <td class="t">Điện thoại</td> <td class="i"><input type="text" name="t_dienthoai" value="{tmp.tv_dienthoai}" class="l" /></td> </tr> <tr> <td class="t">Địa chỉ</td> <td class="i"><input type="text" name="t_diachi" value="{tmp.tv_diachi}" class="l" /></td> </tr> <tr> <td class="t">Tài khoản</td> <td class="i redcolor"><input title="Chỉ nhập số" type="text" name="t_money_char" id="oi_money_char" value="{tmp.tv_money}" onchange="add_money_cho_mem()" class="n redcolor bold" style="font-size:13pt;outline:0 none;border:0 none;background:#fff" /> (đ)</td> </tr> <tr> <td class="t">Trạng thái</td> <td class="i">{tmp.tv_trangthai}</td> </tr> <tr> <td class="t">Ngày đăng ký</td> <td class="i">{tmp.tv_ngaydangky}</td> </tr> <tr> <td class="t">Đăng nhập cuối</td> <td class="i">{tmp.tv_ngaydangnhap}</td> </tr> <tr> <td class="t">&nbsp;</td> <td class="i"><input type="submit" value="Lưu thay đổi" name="btUpdateMember" class="blue-button" /></td> </tr> </table> </form> </div> <br /> <div class="titleCSS bold">Hóa đơn đã gửi <span id="oi_customer_email"></span></div> <br /> <table border="0" cellpadding="6" cellspacing="0" width="100%" class="table-list"> <tr class="table-list-title"> <td>Mã HĐ</td> <td>Ngày gửi</td> <td>Trạng thái</td> <td>S.Lượng</td> <td><input type="checkbox" value="0" name="all_invoice_id" id="all_invoice_id" onclick="gop_hoa_don('all')" /></td> </tr> {tmp.invoice_list} </table> <div>{tmp.p_page}</div> <br /> <div id="div_gop_hoa_don" style="visibility:hidden"> <form name="frm_merger_invoice" id="frm_merger_invoice" method="post" action="9999/process&module_id=merger_invoice" target="target_eb_iframe" onsubmit="return check_gop_hd()"> <input type="hidden" name="invoice_id_value" id="invoice_id_value" value="" /> <div align="right"> <input type="submit" name="merger_invoice_submit" id="merger_invoice_submit" value="Gộp những hóa đơn này" class="blue-button" /> </div> </form> </div></div> <br /> <script type="text/javascript">
+{tmp.js}
+function add_money_cho_mem () {
+var str = dog('oi_money_char').value.split('');
+var mon = '';
+for (var i = 0; i < str.length; i++) {
+var re = /^\d+$/;
+if (re.test(str[i]) == true) {
+mon += str[i];
+}
+}
+dog('oi_money').value = mon;
+}
+add_money_cho_mem();
+function gop_hoa_don (o) {
+var arr_invoice_id = document.getElementsByName('merge_hoa_don');
+if (o && o == 'all') {
+var checkchecked = dog('all_invoice_id').checked;
+for (i = 0; i < arr_invoice_id.length; i++) {
+arr_invoice_id[i].checked = checkchecked;
+}
+gop_hoa_don();
+} else {
+var str = '';
+for (i = 0; i < arr_invoice_id.length; i++) {
+if (arr_invoice_id[i].checked == true) {
+str += ',' +arr_invoice_id[i].value;
+}
+}
+if (str == '') {
+dog('div_gop_hoa_don').style.visibility = 'hidden';
+} else {
+dog('div_gop_hoa_don').style.visibility = 'visible';
+str = str.substr(1);
+}
+dog('invoice_id_value').value = str;
+}
+}
+function check_gop_hd () {
+with (document.frm_merger_invoice) {
+var check_value_invoice = invoice_id_value.value;
+if (check_value_invoice == '') {
+alert('Không xác định được ID gửi đi');
+return false;
+}
+check_value_invoice = check_value_invoice.split(',');
+if (check_value_invoice.length < 2) {
+alert('Càn có từ 2 hóa đơn trở lên để gộp');
+return false;
+}
+}
+}
+function cpl_gop_hd (m, r) {
+if (r == 1) {
+window.location.reload(true);
+}
+else {
+alert(m);
+}
+}
+(function () {
+if (check_ad_thanhvien == 0) {
+dog('oi_customer_email').innerHTML = ' bởi <span style="color:#03C">' +customer_email+ '</span>';
+dog('hidden_member_details').style.display = 'none';
+}
+}());
+</script> 
